@@ -1,0 +1,2473 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Gurmad Library — Books by Gurmad Technology</title>
+    <meta name="description" content="Gurmad Library — the Complete Learning Collection (Taxanaha buugaagta waxbarashada) of Gurmad Technology. Each bilingual English–Somali book has its own page: explore Inside the Book (Gudaha buugga) selected pages, download the Complimentary Reading Edition, and Get Full Access. Your books live in My Library (Maktabaddayda)." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light;
+        --navy-950: #04122b;
+        --navy-900: #071c3d;
+        --navy-800: #0a2a56;
+        --cyan: #22c8f5;
+        --cyan-deep: #0e9fd8;
+        --emerald: #17cf8b;
+        --emerald-deep: #0da76a;
+        --bg: #faf6ec;
+        --surface: #ffffff;
+        --surface-2: #f2ecdb;
+        --ink: #0c2242;
+        --ink-soft: #47617f;
+        --line: #e3dbc6;
+        --hero-ink: #eaf4ff;
+        --hero-soft: #a9c6e4;
+        --shadow: 0 18px 40px rgba(7, 28, 61, 0.14);
+        --radius: 14px;
+      }
+            :root[data-theme="dark"] { color-scheme: dark; --bg: #051530;
+          --surface: #0a2148;
+          --surface-2: #0d2a58;
+          --ink: #eaf4ff;
+          --ink-soft: #a9c6e4;
+          --line: #1d3f6e;
+          --shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; animation: none !important; }
+      }
+      body {
+        margin: 0;
+        font-family: "Barlow", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.55;
+        font-size: 17px;
+      }
+      h1, h2, h3, .cond {
+        font-family: "Barlow Condensed", "Barlow", sans-serif;
+        letter-spacing: 0.01em;
+        margin: 0;
+      }
+      img { max-width: 100%; display: block; }
+      a { color: var(--cyan-deep); }
+            :root[data-theme="dark"] a { color: var(--cyan); }
+      .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- Top navigation ---------- */
+      .topbar {
+        position: sticky; top: 0; z-index: 40;
+        background: var(--navy-950);
+        border-bottom: 1px solid rgba(34, 200, 245, 0.3);
+      }
+      .topbar-in {
+        display: flex; align-items: center; gap: 18px;
+        padding-top: 10px; padding-bottom: 10px;
+      }
+      .brandmark {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+        font-size: 1.5rem; letter-spacing: 0.04em; text-transform: uppercase;
+        color: var(--hero-ink); text-decoration: none; white-space: nowrap; line-height: 1;
+      }
+      .brandmark span { color: var(--emerald); }
+      .brandmark small {
+        display: block; font-family: "Barlow", sans-serif; font-weight: 500;
+        font-size: 0.68rem; letter-spacing: 0.18em; color: var(--hero-soft); margin-top: 3px;
+      }
+      nav.mainnav { display: flex; flex-wrap: wrap; gap: 4px; margin-left: auto; }
+      nav.mainnav a {
+        color: var(--hero-soft); text-decoration: none; font-weight: 600; font-size: 0.98rem;
+        padding: 9px 14px; border-radius: 999px; min-height: 42px; display: inline-flex; align-items: center;
+      }
+      nav.mainnav a:hover { color: var(--hero-ink); }
+      nav.mainnav a.active { background: rgba(34, 200, 245, 0.16); color: var(--cyan); }
+      nav.mainnav a.nav-order { background: var(--emerald); color: #04331f; }
+      nav.mainnav a.nav-order:hover { background: #3fe0a2; color: #04331f; }
+
+      /* ---------- Views (pages) ---------- */
+      .view { display: none; }
+      .view.active { display: block; }
+
+      /* ---------- Hero (Home) ---------- */
+      .hero {
+        background:
+          radial-gradient(900px 480px at 85% -10%, rgba(34, 200, 245, 0.28), transparent 60%),
+          radial-gradient(700px 420px at -10% 110%, rgba(23, 207, 139, 0.22), transparent 55%),
+          linear-gradient(160deg, var(--navy-950), var(--navy-900) 55%, var(--navy-800));
+        color: var(--hero-ink);
+        overflow: hidden;
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 40px;
+        align-items: center;
+        padding: 52px 0 60px;
+      }
+      .hero .brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        color: var(--cyan);
+        margin: 0 0 14px;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 5.6vw, 4.2rem);
+        line-height: 0.98;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .hero h1 .accent { color: var(--cyan); }
+      .hero h1 .accent2 { color: var(--emerald); }
+      .hero p.lede {
+        color: var(--hero-soft);
+        font-size: 1.12rem;
+        max-width: 32rem;
+        margin: 18px 0 6px;
+      }
+      .hero p.somali {
+        color: var(--hero-ink);
+        font-size: 1.01rem;
+        max-width: 32rem;
+        margin: 0 0 26px;
+      }
+      .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 48px;
+        padding: 12px 24px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        font-family: "Barlow", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn-cyan { background: var(--cyan); color: #03263a; }
+      .btn-cyan:hover { background: #4fd6f8; }
+      .btn-ghost { background: transparent; color: var(--hero-ink); border-color: rgba(169, 198, 228, 0.55); }
+      .hero .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+      .hero-facts {
+        display: flex; flex-wrap: wrap; gap: 10px 26px;
+        margin-top: 28px; color: var(--hero-soft); font-size: 0.95rem;
+      }
+      .hero-facts strong { color: var(--hero-ink); font-size: 1.15rem; font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.04em; }
+      .shelf {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: end;
+      }
+      .shelf a { text-decoration: none; }
+      .shelf figure { margin: 0; text-align: center; }
+      .shelf img {
+        width: 100%; height: auto; border-radius: 6px;
+        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(34, 200, 245, 0.3);
+        transition: transform 0.18s ease;
+      }
+      .shelf a:hover img { transform: translateY(-6px); }
+      .shelf figcaption { color: var(--hero-soft); font-size: 0.88rem; margin-top: 10px; font-weight: 600; }
+
+      /* ---------- Page head (sub-pages) ---------- */
+      .pagehead {
+        background: linear-gradient(150deg, var(--navy-950), var(--navy-800));
+        color: var(--hero-ink);
+      }
+      .pagehead-in { padding: 38px 0 42px; }
+      .pagehead .crumb { color: var(--hero-soft); font-size: 0.95rem; margin: 0 0 10px; }
+      .pagehead .crumb a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+      .pagehead h1 { font-size: clamp(2.1rem, 4.6vw, 3.2rem); text-transform: uppercase; line-height: 1; font-weight: 700; }
+      .pagehead h1 span { color: var(--emerald); }
+      .pagehead p { color: var(--hero-soft); max-width: 44rem; margin: 12px 0 0; }
+
+      /* ---------- Sections ---------- */
+      section { padding: 52px 0 8px; }
+      .sec-head { max-width: 46rem; margin-bottom: 30px; }
+      .sec-head h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; text-transform: uppercase; line-height: 1.02; }
+      .sec-head p { color: var(--ink-soft); margin: 10px 0 0; }
+
+      /* ---------- Book cards ---------- */
+      .books { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .book {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: flex; flex-direction: column;
+        overflow: hidden;
+      }
+      .book .cover-wrap {
+        background: radial-gradient(420px 240px at 50% 0%, rgba(34, 200, 245, 0.16), transparent 70%), var(--navy-950);
+        padding: 24px 22px 20px; display: flex; justify-content: center;
+      }
+      .book .cover-wrap img {
+        width: min(200px, 66%);
+        border-radius: 6px;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5);
+      }
+      .book .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+      .badge {
+        display: inline-block; align-self: flex-start;
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; font-size: 0.8rem;
+        padding: 4px 12px; border-radius: 999px; margin: 0 0 10px;
+      }
+      .badge-now { background: rgba(23, 207, 139, 0.16); color: var(--emerald-deep); border: 1px solid var(--emerald); }
+            :root[data-theme="dark"] .badge-now { color: var(--emerald); }
+      .badge-soon { background: rgba(34, 200, 245, 0.14); color: var(--cyan-deep); border: 1px solid var(--cyan-deep); }
+            :root[data-theme="dark"] .badge-soon { color: var(--cyan); border-color: var(--cyan); }
+      .book h3 { font-size: 1.5rem; line-height: 1.08; font-weight: 700; }
+      .book .sub { font-weight: 600; color: var(--ink-soft); margin: 6px 0 10px; font-size: 0.97rem; }
+      .book .desc { color: var(--ink-soft); font-size: 0.96rem; margin: 0 0 14px; }
+      .book .meta-line { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 16px; }
+      .book .meta-line strong { color: var(--ink); font-family: "Barlow Condensed", sans-serif; font-size: 1.1rem; letter-spacing: 0.03em; }
+      .book .foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+      .btn-view {
+        width: 100%; background: var(--navy-900); color: #fff; border-color: var(--navy-900);
+      }
+      .btn-view:hover { background: var(--navy-800); }
+            :root[data-theme="dark"] .btn-view { background: var(--cyan); color: #03263a; border-color: var(--cyan); }
+      :root[data-theme="dark"] .btn-view:hover { background: #4fd6f8; }
+      .contact-card {
+        border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2);
+        padding: 14px 16px; margin-bottom: 8px; width: 100%;
+      }
+      .contact-card p { margin: 0 0 6px; font-size: 0.97rem; }
+      .contact-card p:last-child { margin-bottom: 0; }
+      .contact-num { font-weight: 700; white-space: nowrap; font-size: 1.08rem; }
+      .copy-btn {
+        font: inherit; font-size: 0.85rem; font-weight: 700;
+        padding: 5px 14px; min-height: 34px; border-radius: 999px;
+        border: 1px solid var(--cyan-deep); background: transparent; color: var(--cyan-deep);
+        cursor: pointer; vertical-align: middle; margin-left: 8px; white-space: nowrap;
+      }
+            :root[data-theme="dark"] .copy-btn { color: var(--cyan); border-color: var(--cyan); }
+      .copy-btn:hover { background: rgba(34, 200, 245, 0.14); }
+      .soon-cover {
+        background: radial-gradient(420px 240px at 50% 0%, rgba(23, 207, 139, 0.14), transparent 70%), var(--navy-950);
+        padding: 30px 22px; display: flex; align-items: center; justify-content: center; min-height: 190px;
+      }
+      .soon-cover .soon-glyph {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--cyan); font-size: 1.3rem; text-align: center; line-height: 1.25;
+        border: 1.5px dashed rgba(34, 200, 245, 0.6); border-radius: 10px; padding: 22px 18px; width: 100%;
+      }
+      .soon-cover .soon-glyph small { display: block; color: var(--emerald); font-size: 0.95rem; margin-top: 6px; letter-spacing: 0.2em; }
+
+      /* ---------- Book detail page ---------- */
+      .detail { display: grid; grid-template-columns: 340px 1fr; gap: 34px; align-items: start; padding-top: 40px; }
+      .detail .d-cover {
+        background: radial-gradient(420px 260px at 50% 0%, rgba(34, 200, 245, 0.16), transparent 70%), var(--navy-950);
+        border-radius: var(--radius); padding: 28px 24px; display: flex; justify-content: center;
+        box-shadow: var(--shadow);
+      }
+      .detail .d-cover img { width: min(250px, 80%); border-radius: 6px; box-shadow: 0 18px 38px rgba(0, 0, 0, 0.55); }
+      .detail h2 { font-size: clamp(1.9rem, 3.6vw, 2.5rem); line-height: 1.04; font-weight: 700; }
+      .detail .d-sub { font-weight: 600; color: var(--ink-soft); margin: 8px 0 12px; font-size: 1.05rem; }
+      .detail .d-desc { color: var(--ink-soft); margin: 0 0 16px; max-width: 42rem; }
+      .learn-head {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 0.05em;
+        font-size: 1.15rem; margin: 4px 0 8px; color: var(--ink);
+      }
+      .learn { list-style: none; margin: 0 0 6px; padding: 0; }
+      .learn li { position: relative; padding: 3px 0 3px 30px; font-size: 0.97rem; color: var(--ink-soft); }
+      .learn li::before {
+        content: ""; position: absolute; left: 0; top: 5px; width: 19px; height: 19px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%2317cf8b"/><path d="M8 12.5l2.6 2.6L16.5 9" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain;
+      }
+      .fit { font-size: 0.94rem; color: var(--ink-soft); margin: 8px 0 0; }
+      .fit strong { color: var(--ink); }
+      .specs { list-style: none; margin: 16px 0 18px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 16px; }
+      .specs li { font-size: 0.92rem; color: var(--ink-soft); }
+      .specs li strong { display: block; color: var(--ink); font-family: "Barlow Condensed", sans-serif; font-size: 1.15rem; letter-spacing: 0.03em; }
+      fieldset.editions { border: 0; margin: 0 0 14px; padding: 0; }
+      fieldset.editions legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; padding: 0; }
+      .edition {
+        display: flex; gap: 10px; align-items: flex-start;
+        border: 1px solid var(--line); border-radius: 10px;
+        padding: 10px 12px; margin-bottom: 8px; cursor: pointer; min-height: 44px;
+        background: var(--surface);
+      }
+      .edition:has(input:checked) { border-color: var(--cyan-deep); background: var(--surface-2); }
+      .edition input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--cyan-deep); flex: none; }
+      .edition .t { font-weight: 600; font-size: 0.95rem; display: block; }
+      .edition .d { font-size: 0.87rem; color: var(--ink-soft); display: block; }
+      .d-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+      .btn-add { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+      .btn-add:hover { background: var(--navy-800); }
+            :root[data-theme="dark"] .btn-add { background: var(--cyan); color: #03263a; border-color: var(--cyan); }
+      :root[data-theme="dark"] .btn-add:hover { background: #4fd6f8; }
+      .btn-sample {
+        background: transparent; color: var(--cyan-deep); border-color: var(--cyan-deep);
+      }
+            :root[data-theme="dark"] .btn-sample { color: var(--cyan); border-color: var(--cyan); }
+      .btn-sample:hover { background: var(--surface-2); }
+      .added-note { font-size: 0.92rem; color: var(--emerald-deep); font-weight: 600; min-height: 1.4em; margin: 8px 0 0; }
+            :root[data-theme="dark"] .added-note { color: var(--emerald); }
+      .d-promo { margin: 34px 0 0; }
+      .d-promo img { width: 100%; max-width: 520px; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); }
+      .d-promo.tall img { max-width: 380px; }
+      .d-promo figcaption { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; color: var(--ink-soft); font-size: 0.94rem; margin-top: 10px; }
+      .dl-link { font-weight: 700; text-decoration: none; white-space: nowrap; }
+      .dl-link:hover { text-decoration: underline; }
+      .backlink { display: inline-block; font-weight: 700; text-decoration: none; margin-top: 26px; }
+      .backlink:hover { text-decoration: underline; }
+
+      /* ---------- Inside the Book strip ---------- */
+      .inside-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 18px; }
+      .inside-strip figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+      .inside-strip img { width: 100%; height: 160px; object-fit: cover; object-position: top center; background: #fff; }
+      .inside-strip figcaption { padding: 9px 10px; font-weight: 600; font-size: 0.92rem; text-align: center; line-height: 1.3; }
+      .inside-strip figcaption small { display: block; color: var(--ink-soft); font-weight: 500; font-size: 0.85rem; }
+      .actions-stack { flex-direction: column; align-items: stretch; }
+      .actions-stack .btn { width: 100%; }
+      .btn-explore { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+      .btn-explore:hover { background: var(--navy-800); }
+            :root[data-theme="dark"] .btn-explore { background: var(--cyan); color: #03263a; border-color: var(--cyan); }
+      :root[data-theme="dark"] .btn-explore:hover { background: #4fd6f8; }
+      @media (max-width: 680px) {
+        .inside-strip { gap: 8px; }
+        .inside-strip img { height: 108px; }
+        .inside-strip figcaption { font-size: 0.82rem; padding: 7px 6px; }
+      }
+
+      /* ---------- Reader ---------- */
+      .reader {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        box-shadow: var(--shadow); overflow: hidden; margin-top: 8px;
+      }
+      .reader-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; padding: 16px 20px 0; }
+      .reader-meta .rt { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 1.35rem; }
+      .reader-meta .rf { color: var(--ink-soft); font-size: 0.94rem; }
+      .reader-meta .rf strong { color: var(--emerald-deep); }
+            :root[data-theme="dark"] .reader-meta .rf strong { color: var(--emerald); }
+      .progress { height: 8px; background: var(--surface-2); border-radius: 99px; margin: 14px 20px 0; overflow: hidden; }
+      .progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--emerald)); border-radius: 99px; transition: width 0.25s ease; }
+      .reader-stage {
+        margin: 16px 20px 0; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
+        display: flex; align-items: flex-start; justify-content: center; min-height: 300px; overflow: hidden;
+        touch-action: pan-y;
+      }
+      .reader-stage img { width: min(560px, 100%); height: auto; background: #fff; box-shadow: 0 10px 28px rgba(4, 18, 43, 0.25); }
+      .lock {
+        display: none; width: 100%;
+        background: linear-gradient(160deg, var(--navy-950), var(--navy-800));
+        color: var(--hero-ink); text-align: center; padding: 44px 26px 40px;
+      }
+      .lock.show { display: block; }
+      .lock .lock-ic {
+        width: 74px; height: 74px; margin: 0 auto 16px; border-radius: 50%;
+        border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center;
+        background: rgba(34, 200, 245, 0.1);
+      }
+      .lock h3 { font-size: 1.8rem; text-transform: uppercase; }
+      .lock h3 span { color: var(--emerald); }
+      .lock p { color: var(--hero-soft); max-width: 30rem; margin: 12px auto 4px; }
+      .lock p.so { color: var(--hero-ink); margin-top: 2px; }
+      .lock .lock-ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+      .lock .btn-unlock { background: var(--emerald); color: #04331f; }
+      .lock .btn-unlock:hover { background: #3fe0a2; }
+      .lock .btn-ghost { color: var(--hero-ink); }
+      .reader-controls { display: flex; align-items: center; gap: 12px; padding: 16px 20px 6px; }
+      .reader-controls .nav-btn { flex: 1; background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+      .reader-controls .nav-btn:hover { background: var(--navy-800); }
+      .reader-controls .nav-btn:disabled { opacity: 0.4; cursor: default; }
+            :root[data-theme="dark"] .reader-controls .nav-btn { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+      .reader-controls .count { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .reader-foot { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px 20px 20px; }
+      .reader-foot .btn { flex: 1; }
+      .btn-sample2 { background: var(--emerald); color: #04331f; }
+      .btn-sample2:hover { background: #3fe0a2; }
+      .btn-order2 { background: transparent; color: var(--ink); border-color: var(--line); }
+      .btn-order2:hover { border-color: var(--cyan-deep); }
+
+      /* ---------- Steps ---------- */
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; list-style: none; margin: 0; padding: 0; }
+      .steps li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+      .steps .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 2rem; color: var(--cyan-deep); line-height: 1; }
+            :root[data-theme="dark"] .steps .n { color: var(--cyan); }
+      .steps h3 { font-size: 1.3rem; margin: 8px 0 6px; }
+      .steps p { color: var(--ink-soft); margin: 0; font-size: 0.96rem; }
+      .steps p.so { color: var(--ink); margin-top: 8px; font-size: 0.93rem; }
+
+      /* ---------- Order ---------- */
+      .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+      .panel {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px;
+      }
+      .panel h3 { font-size: 1.45rem; margin-bottom: 14px; }
+      .cart-empty { color: var(--ink-soft); margin: 0; }
+      .cart-line { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .cart-line:last-of-type { border-bottom: 0; }
+      .cart-line .t { font-weight: 600; }
+      .cart-line .e { color: var(--ink-soft); font-size: 0.9rem; display: block; }
+      .qty { display: inline-flex; align-items: center; gap: 2px; }
+      .qty button {
+        width: 38px; height: 38px; border-radius: 8px;
+        border: 1px solid var(--line); background: var(--surface-2); color: var(--ink);
+        font-size: 1.15rem; font-weight: 700; cursor: pointer; line-height: 1;
+      }
+      .qty .n { min-width: 2ch; text-align: center; font-weight: 700; }
+      .remove {
+        background: none; border: 0; color: #c0392b; cursor: pointer;
+        font: inherit; font-size: 0.88rem; font-weight: 600; padding: 6px 2px; min-height: 36px; justify-self: start;
+      }
+            :root[data-theme="dark"] .remove { color: #ff8a7a; }
+      .cart-total { margin-top: 14px; font-weight: 600; }
+      .cart-total span { color: var(--ink-soft); font-weight: 400; display: block; font-size: 0.92rem; }
+      label.f { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 14px; }
+      label.f input, label.f textarea {
+        display: block; width: 100%; margin-top: 6px;
+        font: inherit; font-weight: 400;
+        padding: 11px 12px; min-height: 48px;
+        border: 1px solid var(--line); border-radius: 10px;
+        background: var(--bg); color: var(--ink);
+      }
+      label.f textarea { min-height: 76px; resize: vertical; }
+      .order-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+      .btn-copy-main { background: var(--emerald); color: #04331f; width: 100%; }
+      .btn-copy-main:hover { background: #3fe0a2; }
+      .btn-wa { background: #25d366; color: #04331f; border-color: #25d366; }
+      .btn-wa:hover { background: #4be184; }
+      .btn-wa-main { background: #25d366; color: #04331f; border-color: #25d366; width: 100%; }
+      .btn-wa-main:hover { background: #4be184; }
+      .btn-mail { background: var(--surface-2); color: var(--ink); border-color: var(--line); width: 100%; }
+      .pay-note .contact-num { font-size: 1rem; }
+      .form-msg { min-height: 1.5em; margin: 10px 0 0; font-weight: 600; font-size: 0.95rem; }
+      .form-msg.err { color: #c0392b; }
+      .form-msg.ok { color: var(--emerald-deep); }
+            :root[data-theme="dark"] .form-msg.err { color: #ff8a7a; }
+      :root[data-theme="dark"] .form-msg.ok { color: var(--emerald); }
+      .pay-note { color: var(--ink-soft); font-size: 0.92rem; margin: 14px 0 0; }
+
+      /* ---------- FAQ / footer ---------- */
+      .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .faq div { border-top: 2px solid var(--cyan-deep); padding-top: 12px; }
+      .faq h3 { font-size: 1.25rem; margin-bottom: 6px; }
+      .faq p { color: var(--ink-soft); margin: 0; font-size: 0.96rem; }
+      footer { margin-top: 64px; background: var(--navy-950); color: var(--hero-soft); padding: 36px 0 44px; }
+      footer .cols { display: flex; flex-wrap: wrap; gap: 18px 48px; justify-content: space-between; }
+      footer strong { color: var(--hero-ink); font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.06em; font-size: 1.1rem; display: block; margin-bottom: 6px; }
+      footer a { color: var(--cyan); text-decoration: none; display: inline-block; padding: 4px 0; min-height: 32px; }
+      footer p { margin: 0; }
+
+      .cart-fab {
+        position: fixed; right: 16px; bottom: 16px; z-index: 30;
+        background: var(--emerald); color: #04331f;
+        border: 0; border-radius: 999px; padding: 14px 22px; min-height: 52px;
+        font: inherit; font-weight: 700; cursor: pointer;
+        box-shadow: 0 12px 30px rgba(4, 18, 43, 0.35);
+        display: none;
+      }
+      .cart-fab.show { display: inline-flex; align-items: center; gap: 8px; }
+
+      @media (max-width: 920px) {
+        .books { grid-template-columns: 1fr; }
+        .book { max-width: 560px; margin: 0 auto; width: 100%; }
+        .steps { grid-template-columns: 1fr; }
+        .order-grid { grid-template-columns: 1fr; }
+        .faq { grid-template-columns: 1fr; }
+        .hero-inner { grid-template-columns: 1fr; }
+        .detail { grid-template-columns: 1fr; }
+        .detail .d-cover { max-width: 420px; }
+        .specs { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px) {
+        .hero-inner { padding: 40px 0 48px; gap: 30px; }
+        section { padding-top: 42px; }
+        .shelf { gap: 10px; }
+        .shelf figcaption { font-size: 0.78rem; }
+        .reader-stage, .progress { margin-left: 12px; margin-right: 12px; }
+        .reader-controls, .reader-foot, .reader-meta { padding-left: 12px; padding-right: 12px; }
+        .reader-foot .btn { flex: 1 1 100%; }
+        .d-actions .btn { flex: 1 1 100%; }
+        nav.mainnav a { padding: 8px 10px; font-size: 0.92rem; }
+        .brandmark { font-size: 1.3rem; }
+      }
+
+      /* ================= REDESIGN: storefront (light design + dark design) ================= */
+      /* Topbar — white in light, navy in dark */
+      .topbar { background: var(--surface); border-bottom: 1px solid var(--line); }
+      .brandmark { color: var(--ink); }
+      .brandmark small { color: var(--ink-soft); }
+      nav.mainnav a { color: var(--ink-soft); }
+      nav.mainnav a:hover { color: var(--ink); }
+      nav.mainnav a.active { background: var(--navy-900); color: #fff; }
+            :root[data-theme="dark"] .topbar { background: var(--navy-950); border-bottom-color: rgba(34, 200, 245, 0.3); }
+      :root[data-theme="dark"] .brandmark { color: var(--hero-ink); }
+      :root[data-theme="dark"] .brandmark small { color: var(--hero-soft); }
+      :root[data-theme="dark"] nav.mainnav a { color: var(--hero-soft); }
+      :root[data-theme="dark"] nav.mainnav a:hover { color: var(--hero-ink); }
+      :root[data-theme="dark"] nav.mainnav a.active { background: rgba(34, 200, 245, 0.16); color: var(--cyan); }
+      .searchbox { position: relative; flex: 0 1 240px; margin-left: 8px; }
+      .searchbox svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+      .searchbox input {
+        width: 100%; font: inherit; font-size: 0.95rem;
+        padding: 10px 14px 10px 38px; min-height: 44px;
+        border: 1px solid var(--line); border-radius: 999px;
+        background: var(--surface-2); color: var(--ink);
+      }
+      .searchbox input::placeholder { color: var(--ink-soft); }
+      .icon-btn {
+        position: relative; display: inline-flex; align-items: center; justify-content: center;
+        width: 46px; height: 46px; border-radius: 50%; flex: none;
+        border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer;
+      }
+      .icon-btn:hover { background: var(--surface-2); }
+            :root[data-theme="dark"] .icon-btn { color: var(--hero-ink); }
+      :root[data-theme="dark"] .icon-btn:hover { background: rgba(34,200,245,0.12); }
+      .cart-count {
+        position: absolute; top: 0; right: 0; min-width: 20px; height: 20px;
+        background: var(--emerald); color: #04331f; border-radius: 999px;
+        font-size: 0.75rem; font-weight: 700; display: none;
+        align-items: center; justify-content: center; padding: 0 5px;
+      }
+      .cart-count.show { display: inline-flex; }
+      .signin-btn {
+        font: inherit; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+        padding: 10px 20px; min-height: 44px; border-radius: 999px; white-space: nowrap;
+        border: 1.5px solid var(--cyan-deep); background: transparent; color: var(--cyan-deep);
+      }
+      .signin-btn:hover { background: rgba(34, 200, 245, 0.12); }
+            :root[data-theme="dark"] .signin-btn { border-color: var(--cyan); color: var(--cyan); }
+
+      /* Hero — cream in light, navy in dark */
+      .hero {
+        background:
+          radial-gradient(820px 420px at 88% -10%, rgba(23, 207, 139, 0.14), transparent 60%),
+          radial-gradient(700px 420px at -10% 110%, rgba(34, 200, 245, 0.12), transparent 55%),
+          linear-gradient(165deg, #fffdf6, #faf3e0 60%, #f5ecd2);
+        color: var(--ink);
+      }
+      .hero .brand { color: var(--cyan-deep); }
+      .hero-tag {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+        padding: 7px 14px; font-weight: 600; font-size: 0.92rem; color: var(--ink-soft);
+        margin: 0 0 18px; box-shadow: 0 4px 14px rgba(7, 28, 61, 0.06);
+      }
+      .hero h1 { text-transform: none; }
+      .hero h1 .accent { color: inherit; }
+      .hero h1 .l2 { display: block; font-size: 0.82em; margin-top: 6px; }
+      .hero p.lede { color: var(--ink-soft); }
+      .hero p.lede strong { color: var(--ink); }
+      .hero p.somali { color: var(--ink); border-left: 3px solid var(--emerald); padding-left: 14px; }
+      .btn-navy { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+      .btn-navy:hover { background: var(--navy-800); }
+      .shelf figcaption { color: var(--ink-soft); }
+      .hero .shelf img { border-color: rgba(7, 28, 61, 0.12); }
+            :root[data-theme="dark"] .hero { background:
+            radial-gradient(900px 480px at 85% -10%, rgba(34, 200, 245, 0.28), transparent 60%),
+            radial-gradient(700px 420px at -10% 110%, rgba(23, 207, 139, 0.22), transparent 55%),
+            linear-gradient(160deg, var(--navy-950), var(--navy-900) 55%, var(--navy-800));
+          color: var(--hero-ink); }
+      :root[data-theme="dark"] .hero .brand { color: var(--cyan); }
+      :root[data-theme="dark"] .hero-tag { background: rgba(34, 200, 245, 0.1); border-color: rgba(34, 200, 245, 0.35); color: var(--hero-soft); box-shadow: none; }
+      :root[data-theme="dark"] .hero h1 .accent { color: var(--cyan); }
+      :root[data-theme="dark"] .hero p.lede { color: var(--hero-soft); }
+      :root[data-theme="dark"] .hero p.lede strong { color: var(--hero-ink); }
+      :root[data-theme="dark"] .hero p.somali { color: var(--hero-ink); }
+      :root[data-theme="dark"] .btn-navy { background: var(--emerald); color: #04331f; border-color: var(--emerald); }
+      :root[data-theme="dark"] .btn-navy:hover { background: #3fe0a2; }
+      :root[data-theme="dark"] .shelf figcaption { color: var(--hero-soft); }
+      :root[data-theme="dark"] .hero .shelf img { border-color: rgba(34, 200, 245, 0.3); }
+
+      /* Category chips */
+      .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 26px; }
+      .chip {
+        font: inherit; font-weight: 600; font-size: 0.97rem; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 10px 20px; min-height: 46px; border-radius: 12px;
+        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+        box-shadow: 0 3px 10px rgba(7, 28, 61, 0.05);
+      }
+      .chip:hover { border-color: var(--cyan-deep); }
+      .chip.active { background: var(--navy-900); border-color: var(--navy-900); color: #fff; }
+            :root[data-theme="dark"] .chip.active { background: var(--cyan); border-color: var(--cyan); color: #03263a; }
+      .feat-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+      .feat-row h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; text-transform: uppercase; line-height: 1.02; }
+      .feat-row a { font-weight: 700; text-decoration: none; white-space: nowrap; }
+      .feat-row a:hover { text-decoration: underline; }
+      .no-results { color: var(--ink-soft); font-weight: 600; display: none; margin: 0 0 8px; }
+      .no-results.show { display: block; }
+
+      /* Store book cards (horizontal) */
+      .book-card { padding: 20px; gap: 16px; }
+      .book-main { display: flex; gap: 16px; align-items: flex-start; }
+      .book-main .cov { flex: none; width: 104px; }
+      .book-main .cov img { width: 104px; height: auto; border-radius: 5px; box-shadow: 0 10px 22px rgba(4, 18, 43, 0.35); }
+      .book-main .info { flex: 1; min-width: 0; }
+      .cat-label {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; font-size: 0.78rem; display: block; margin-bottom: 5px;
+      }
+      .cat-reference { color: var(--emerald-deep); }
+      .cat-practical { color: #7c3aed; }
+      .cat-advanced { color: #6d28d9; }
+            :root[data-theme="dark"] .cat-reference { color: var(--emerald); }
+      :root[data-theme="dark"] .cat-practical, :root[data-theme="dark"] .cat-advanced { color: #c4a5f5; }
+      .book-card h3 { font-size: 1.42rem; }
+      .book-card h3 a { color: inherit; text-decoration: none; }
+      .book-card h3 a:hover { text-decoration: underline; }
+      .book-card .desc { margin-bottom: 10px; }
+      .meta-lines { list-style: none; margin: 0 0 12px; padding: 0; font-size: 0.93rem; color: var(--ink-soft); }
+      .meta-lines li { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+      .meta-lines svg { flex: none; color: var(--cyan-deep); }
+            :root[data-theme="dark"] .meta-lines svg { color: var(--cyan); }
+      .lang-pill {
+        display: inline-block; background: rgba(23, 207, 139, 0.16); color: var(--emerald-deep);
+        border-radius: 999px; padding: 3px 12px; font-size: 0.85rem; font-weight: 700; margin: 0 0 10px;
+      }
+            :root[data-theme="dark"] .lang-pill { color: var(--emerald); }
+      .price-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0; }
+      .price-now { font-size: 1.55rem; font-weight: 700; color: var(--ink); font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.02em; }
+      .price-row .price-now { color: var(--emerald-deep); }
+            :root[data-theme="dark"] .price-row .price-now { color: var(--emerald); }
+      .price-was { color: var(--ink-soft); text-decoration: line-through; font-size: 1.02rem; }
+      .save-pill { background: var(--emerald); color: #04331f; font-weight: 700; font-size: 0.83rem; padding: 3px 11px; border-radius: 999px; }
+      .btn-outline {
+        width: 100%; background: var(--surface); color: var(--ink); border-color: var(--line);
+      }
+      .btn-outline:hover { border-color: var(--cyan-deep); color: var(--cyan-deep); }
+            :root[data-theme="dark"] .btn-outline { background: transparent; color: var(--ink); }
+      :root[data-theme="dark"] .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+      .btn-get { width: 100%; background: var(--emerald-deep); color: #fff; border-color: var(--emerald-deep); }
+      .btn-get:hover { background: var(--emerald); color: #04331f; }
+            :root[data-theme="dark"] .btn-get { background: var(--emerald); color: #04331f; border-color: var(--emerald); }
+
+      /* Detail page price */
+      .d-price { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
+      .d-price .price-now { font-size: 2rem; }
+      .d-price .kind { color: var(--ink-soft); font-size: 0.95rem; width: 100%; }
+
+      /* Inside the Book strip (home) */
+      .inside4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+      .inside4 .tile {
+        display: flex; align-items: center; gap: 14px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        padding: 16px; box-shadow: 0 6px 18px rgba(7, 28, 61, 0.06);
+      }
+      .inside4 .ic {
+        flex: none; width: 52px; height: 52px; border-radius: 12px;
+        background: var(--navy-900); color: var(--cyan);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .inside4 .t { font-weight: 700; line-height: 1.25; }
+      .inside4 .t small { display: block; color: var(--ink-soft); font-weight: 500; font-size: 0.9rem; }
+      @media (max-width: 920px) { .inside4 { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 520px) { .inside4 { grid-template-columns: 1fr; } }
+
+      /* Collection banner */
+      .collection {
+        position: relative; overflow: hidden;
+        background: linear-gradient(120deg, var(--navy-950), var(--navy-800) 70%);
+        color: var(--hero-ink); border-radius: 18px;
+        padding: 30px 32px; box-shadow: var(--shadow);
+      }
+      .collection .best {
+        position: absolute; top: 18px; left: -6px;
+        background: #f5b921; color: #3a2a00; font-weight: 700; font-size: 0.9rem;
+        padding: 6px 16px 6px 20px; border-radius: 0 999px 999px 0;
+        font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+      }
+      .collection-grid { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; }
+      .collection .thumbs { display: flex; }
+      .collection .thumbs img { width: 74px; height: auto; border-radius: 4px; box-shadow: 0 10px 22px rgba(0,0,0,0.5); border: 1px solid rgba(34,200,245,0.35); }
+      .collection .thumbs img + img { margin-left: -26px; }
+      .collection h3 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); color: #fff; line-height: 1.05; }
+      .collection .c-sub { color: var(--hero-soft); margin: 8px 0 12px; }
+      .collection .checks { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; font-size: 0.95rem; }
+      .collection .checks li { display: flex; align-items: center; gap: 7px; }
+      .collection .checks svg { color: var(--emerald); flex: none; }
+      .collection .c-price { text-align: right; border-left: 1px solid rgba(169, 198, 228, 0.3); padding-left: 28px; }
+      .collection .c-price .was { color: var(--hero-soft); text-decoration: line-through; font-size: 1.05rem; display: block; }
+      .collection .c-price .now { font-size: 2.5rem; font-weight: 700; color: #fff; font-family: "Barlow Condensed", sans-serif; line-height: 1.05; display: block; }
+      .collection .c-price .save-pill { margin-top: 6px; display: inline-block; }
+      .collection .btn-coll { background: var(--emerald); color: #04331f; margin-top: 14px; width: 100%; }
+      .collection .btn-coll:hover { background: #3fe0a2; }
+      @media (max-width: 920px) {
+        .collection-grid { grid-template-columns: 1fr; gap: 20px; }
+        .collection .c-price { text-align: left; border-left: 0; padding-left: 0; }
+        .collection { padding-top: 56px; }
+      }
+
+      /* Why strip */
+      .why-band { background: var(--surface-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 52px; }
+            :root[data-theme="dark"] .why-band { background: var(--navy-950); }
+      .why-in { display: grid; grid-template-columns: auto 1fr 1fr 1fr 1fr; gap: 18px 26px; align-items: center; padding: 26px 0; }
+      .why-in h2 { font-size: 1.7rem; line-height: 1.05; }
+      .why-item { display: flex; gap: 12px; align-items: flex-start; }
+      .why-item svg { flex: none; color: var(--emerald-deep); margin-top: 3px; }
+            :root[data-theme="dark"] .why-item svg { color: var(--emerald); }
+      .why-item .t { font-weight: 700; line-height: 1.3; }
+      .why-item .t small { display: block; color: var(--ink-soft); font-weight: 500; }
+      @media (max-width: 920px) { .why-in { grid-template-columns: 1fr 1fr; } .why-in h2 { grid-column: 1 / -1; } }
+      @media (max-width: 520px) { .why-in { grid-template-columns: 1fr; } }
+
+      /* Footer stats */
+      .stats-bar {
+        display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: center;
+        border-bottom: 1px solid rgba(169, 198, 228, 0.25);
+        padding-bottom: 22px; margin-bottom: 24px;
+      }
+      .stat { display: flex; align-items: center; gap: 12px; color: var(--hero-soft); font-size: 0.95rem; line-height: 1.3; }
+      .stat svg { color: var(--cyan); flex: none; }
+      .stat strong { display: block; color: #fff; font-family: "Barlow Condensed", sans-serif; font-size: 1.35rem; letter-spacing: 0.03em; line-height: 1; }
+
+      /* Bottom nav (mobile) */
+      .bottomnav {
+        display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+        background: var(--navy-950); border-top: 1px solid rgba(34, 200, 245, 0.3);
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+      }
+      .bottomnav .bn-in { display: grid; grid-template-columns: repeat(5, 1fr); }
+      .bottomnav a, .bottomnav button {
+        display: flex; flex-direction: column; align-items: center; gap: 3px;
+        color: var(--hero-soft); text-decoration: none; font: inherit; font-size: 0.78rem; font-weight: 600;
+        background: none; border: 0; cursor: pointer; padding: 7px 2px; border-radius: 12px; min-height: 54px; justify-content: center;
+        position: relative;
+      }
+      .bottomnav a.active { color: var(--cyan); background: rgba(34, 200, 245, 0.14); }
+      .bottomnav .bn-badge {
+        position: absolute; top: 2px; right: calc(50% - 22px); min-width: 18px; height: 18px;
+        background: var(--emerald); color: #04331f; border-radius: 999px; font-size: 0.7rem; font-weight: 700;
+        display: none; align-items: center; justify-content: center; padding: 0 4px;
+      }
+      .bottomnav .bn-badge.show { display: inline-flex; }
+      @media (max-width: 760px) {
+        .bottomnav { display: block; }
+        body { padding-bottom: 74px; }
+        .searchbox { display: none; }
+        nav.mainnav { display: none; }
+        .cart-fab { display: none !important; }
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed; left: 50%; transform: translateX(-50%) translateY(16px);
+        bottom: 92px; z-index: 60; max-width: min(92vw, 30rem);
+        background: var(--navy-950); color: var(--hero-ink);
+        border: 1px solid rgba(34, 200, 245, 0.45); border-radius: 12px;
+        padding: 13px 18px; font-size: 0.95rem; box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+        opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+      @media (min-width: 761px) { .toast { bottom: 28px; } }
+
+      /* ---------- Theme switch (top bar) ---------- */
+      .theme-toggle {
+        display: inline-flex; align-items: center; gap: 7px; flex: none;
+        font: inherit; font-weight: 600; font-size: 0.92rem; cursor: pointer;
+        min-height: 44px; padding: 9px 14px; border-radius: 999px; white-space: nowrap;
+        border: 1.5px solid var(--line); background: var(--surface-2); color: var(--ink);
+      }
+      .theme-toggle:hover { border-color: var(--cyan-deep); }
+      :root[data-theme="dark"] .theme-toggle { border-color: rgba(34, 200, 245, 0.55); background: rgba(34, 200, 245, 0.1); color: var(--hero-ink); }
+      :root[data-theme="dark"] .theme-toggle:hover { border-color: var(--cyan); }
+
+      /* Dark theme — glowing green action buttons, as in the mobile design */
+      :root[data-theme="dark"] .btn-get,
+      :root[data-theme="dark"] .btn-navy,
+      :root[data-theme="dark"] .btn-coll,
+      :root[data-theme="dark"] .btn-sample2,
+      :root[data-theme="dark"] .btn-copy-main,
+      :root[data-theme="dark"] .lock .btn-unlock {
+        box-shadow: 0 0 18px rgba(23, 207, 139, 0.55), 0 8px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Mobile top bar stays compact so brand, theme switch, cart and Sign In fit */
+      @media (max-width: 760px) {
+        .topbar-in { gap: 10px; }
+        .signin-btn { padding: 9px 14px; }
+      }
+      @media (max-width: 520px) {
+        .theme-toggle { padding: 9px 11px; }
+        .theme-toggle .tt-label { display: none; }
+      }
+    </style>
+    <script>
+      /* Set the starting theme before the page paints: the mobile layout
+         opens in the dark design; wider screens follow the system setting.
+         The top-bar switch can override this on any device. */
+      (function () {
+        var dark = window.innerWidth <= 760;
+        if (!dark && window.matchMedia) {
+          dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- ================= TOP NAVIGATION ================= -->
+    <div class="topbar">
+      <div class="wrap topbar-in">
+        <a class="brandmark" href="#/home">Gurmad <span>Library</span><small>Gurmad Technology · Books</small></a>
+        <nav class="mainnav" aria-label="Library pages">
+          <a href="#/home" data-nav="home">Home</a>
+          <a href="#/books" data-nav="books">Books</a>
+          <a href="#/home" data-scrollto="categories">Categories</a>
+          <a href="#/coming-soon" data-nav="coming">Coming Soon</a>
+          <a href="#/home" data-scrollto="help">Help</a>
+        </nav>
+        <div class="searchbox">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#47617f" stroke-width="2"/><path d="M20 20l-3.8-3.8" stroke="#47617f" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" id="book-search" placeholder="Search books, topics..." aria-label="Search books and topics" />
+        </div>
+        <button class="icon-btn" id="cart-btn" type="button" aria-label="My Library — view your books and order">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2.5l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L21.5 8H6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="currentColor"/><circle cx="18" cy="21" r="1.4" fill="currentColor"/></svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="ic-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 13.2A8.2 8.2 0 0 1 10.8 4 8.5 8.5 0 1 0 20 13.2z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+          <svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.9"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+          <span class="tt-label">Dark</span>
+        </button>
+        <button class="signin-btn" type="button" data-note="signin">Sign In</button>
+      </div>
+    </div>
+
+    <!-- ================= PAGE: HOME ================= -->
+    <div class="view" data-view="home">
+      <header class="hero">
+        <div class="wrap hero-inner">
+          <div>
+            <p class="hero-tag">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              Digital Books · English - Somali
+            </p>
+            <h1>Gurmad <span class="accent">Library</span><span class="l2">Explore. Learn. <span class="accent2">Apply.</span></span></h1>
+            <p class="lede">
+              A digital bookstore by <strong>Gurmad Technology</strong> with practical books on
+              AI, software, and modern digital technology — in English and Somali.
+            </p>
+            <p class="somali" lang="so">
+              Maktabadda Gurmad Technology. Ka hel buugaag wax ku ool ah oo ku saabsan AI, software
+              iyo teknoolojiyadda casriga ah, oo lagu qoray Af-Ingiriisi iyo Af-Soomaali.
+            </p>
+            <div class="hero-ctas">
+              <a class="btn btn-navy" href="#/books">Explore Our Books →</a>
+            </div>
+          </div>
+          <div class="shelf" aria-label="Books available now — tap a cover to open that book's page">
+            <a href="#/book/one">
+              <figure>
+                <img src="assets/cover-one.jpg" alt="Cover of The AI &amp; Tech Terminology Handbook" width="652" height="805" />
+                <figcaption>Terminology Handbook</figcaption>
+              </figure>
+            </a>
+            <a href="#/book/two">
+              <figure>
+                <img src="assets/cover-two.jpg" alt="Cover of Prompt Engineering — The Complete Practical Guide" width="608" height="708" />
+                <figcaption>Prompt Engineering</figcaption>
+              </figure>
+            </a>
+            <a href="#/book/three">
+              <figure>
+                <img src="assets/cover-three.jpg" alt="Cover of AI Mastery — From Beginner to Advanced" width="640" height="835" />
+                <figcaption>AI Mastery</figcaption>
+              </figure>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="wrap">
+        <section id="categories">
+          <div class="sec-head">
+            <h2>Browse by Category</h2>
+            <p>Find books by your learning goal.</p>
+          </div>
+          <div class="chips" role="group" aria-label="Browse books by category">
+            <button class="chip active" type="button" data-chip="all">All Books (3)</button>
+            <button class="chip" type="button" data-chip="reference">Reference (1)</button>
+            <button class="chip" type="button" data-chip="practical">Practical Skills (1)</button>
+            <button class="chip" type="button" data-chip="advanced">Advanced Learning (1)</button>
+          </div>
+          <div class="feat-row">
+            <h2>Featured Books</h2>
+            <a href="#/books">View All Books →</a>
+          </div>
+          <p class="no-results" id="no-results">No books match — try another search or category.</p>
+          <div class="books">
+            <article class="book book-card" data-book-card data-cat="reference" data-name="the ai and tech terminology handbook glossary reference erey-bixin">
+              <div class="book-main">
+                <a class="cov" href="#/book/one"><img src="assets/cover-one.jpg" alt="Cover of The AI &amp; Tech Terminology Handbook" width="652" height="805" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-reference">Reference</span>
+                  <h3><a href="#/book/one">The AI &amp; Tech Terminology Handbook</a></h3>
+                  <p class="desc">A Practical Glossary of AI, Software, and Digital Technology</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>749 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>267 pages (Visual Edition)</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$5.00</span><span class="price-was">$7.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/one">Explore Selected Pages</a>
+                <a class="btn btn-outline" id="sample-src-one" href="assets/sample-book-one.pdf" download>Download Reading Edition</a>
+                <button class="btn btn-get" type="button" data-add-card="one">Get Full Access — $5.00</button>
+                <p class="added-note" data-note-card="one" aria-live="polite"></p>
+              </div>
+            </article>
+            <article class="book book-card" data-book-card data-cat="practical" data-name="prompt engineering prompts practical guide chatgpt gemini claude grok">
+              <div class="book-main">
+                <a class="cov" href="#/book/two"><img src="assets/cover-two.jpg" alt="Cover of Prompt Engineering — The Complete Practical Guide" width="608" height="708" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-practical">Practical Skills</span>
+                  <h3><a href="#/book/two">Prompt Engineering</a></h3>
+                  <p class="desc">A complete practical guide to writing effective prompts, with real examples and templates.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>88 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Templates &amp; Use Cases</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$8.00</span><span class="price-was">$10.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/two">Explore Selected Pages</a>
+                <a class="btn btn-outline" id="sample-src-two" href="assets/sample-book-two.pdf" download>Download Reading Edition</a>
+                <button class="btn btn-get" type="button" data-add-card="two">Get Full Access — $8.00</button>
+                <p class="added-note" data-note-card="two" aria-live="polite"></p>
+              </div>
+            </article>
+            <article class="book book-card" data-book-card data-cat="advanced" data-name="ai mastery beginner advanced machine learning agents automation">
+              <div class="book-main">
+                <a class="cov" href="#/book/three"><img src="assets/cover-three.jpg" alt="Cover of AI Mastery — From Beginner to Advanced" width="640" height="835" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-advanced">Advanced Learning</span>
+                  <h3><a href="#/book/three">AI Mastery</a></h3>
+                  <p class="desc">A complete learning journey from fundamentals to real-world applications, automation, and AI agents.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>430 pages (Complete Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Projects &amp; Real Examples</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$12.00</span><span class="price-was">$15.00</span><span class="save-pill">Save $3</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/three">Explore Selected Pages</a>
+                <a class="btn btn-outline" id="sample-src-three" href="assets/sample-book-three.pdf" download>Download Reading Edition</a>
+                <button class="btn btn-get" type="button" data-add-card="three">Get Full Access — $12.00</button>
+                <p class="added-note" data-note-card="three" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head">
+            <h2>Inside the Book · <span lang="so">Gudaha buugga</span></h2>
+            <p>See what's inside before you buy — explore selected pages, key topics, and real examples. <span lang="so">Bogag la soo xulay, tusaalooyin dhab ah, jaantusyo iyo mawduucyada muhiimka ah — buug kasta boggiisa ka sahami.</span></p>
+          </div>
+          <div class="inside4">
+            <div class="tile">
+              <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              <span class="t">Selected Pages<small lang="so">Bogag la soo xulay</small></span>
+            </div>
+            <div class="tile">
+              <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+              <span class="t">Real Examples<small lang="so">Tusaalooyin dhab ah</small></span>
+            </div>
+            <div class="tile">
+              <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4.5 18.5l5-5 3.5 3.5 2.5-2.5 4 4" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+              <span class="t">Illustrations<small lang="so">Jaantusyo &amp; sharaxaad</small></span>
+            </div>
+            <div class="tile">
+              <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.5l2.4 2.4L15.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="t">Key Topics<small lang="so">Mawduucyada muhiimka ah</small></span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="collection">
+            <span class="best">Best Value</span>
+            <div class="collection-grid">
+              <div class="thumbs" aria-hidden="true">
+                <img src="assets/cover-one.jpg" alt="" width="652" height="805" loading="lazy" />
+                <img src="assets/cover-two.jpg" alt="" width="608" height="708" loading="lazy" />
+                <img src="assets/cover-three.jpg" alt="" width="640" height="835" loading="lazy" />
+              </div>
+              <div>
+                <h3>Complete AI Learning Collection</h3>
+                <p class="c-sub">All 3 books together — Terminology + Prompt Engineering + AI Mastery · <span lang="so">Taxanaha buugaagta waxbarashada</span></p>
+                <ul class="checks">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 12.5l5 5L19.5 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Full digital editions</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 12.5l5 5L19.5 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Bilingual (English – Somali)</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 12.5l5 5L19.5 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Practical and up to date</li>
+                </ul>
+              </div>
+              <div class="c-price">
+                <span class="was">$25.00</span>
+                <span class="now">$18.00</span>
+                <span class="save-pill">Save $7 (28%)</span>
+                <button class="btn btn-coll" type="button" id="add-collection">Get the Complete Collection →</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head" style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 20px; max-width:none;">
+            <div>
+              <h2>Coming soon</h2>
+              <p>More practical titles are on the way.</p>
+            </div>
+            <a href="#/coming-soon" style="font-weight:700; text-decoration:none;">View All Upcoming →</a>
+          </div>
+          <div class="books">
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">AI for Business &amp; Productivity<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>AI for Business &amp; Productivity</h3>
+                <p class="sub" lang="so">AI-ga Ganacsiga iyo Wax-soo-saarka</p>
+                <p class="desc">Use AI to grow your business, automate work, and be more productive.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/business">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Build with AI Tools<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Build with AI Tools</h3>
+                <p class="sub" lang="so">Ku-dhisidda Aaladaha AI</p>
+                <p class="desc">Practical guide to building websites, apps, and digital products with AI.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/build">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Digital Marketing with AI<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Digital Marketing with AI</h3>
+                <p class="sub" lang="so">Suuq-geynta Dijitaalka ah ee AI</p>
+                <p class="desc">Modern strategies and AI tools for marketing, content, and business growth.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/marketing">About this book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="why-band" style="margin-left:-20px; margin-right:-20px; padding-left:20px; padding-right:20px;">
+          <div class="why-in">
+            <h2>Why Gurmad Library?</h2>
+            <div class="why-item">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span class="t">Bilingual Content<small>English – Somali</small></span>
+            </div>
+            <div class="why-item">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+              <span class="t">Practical &amp; Real<small>Examples</small></span>
+            </div>
+            <div class="why-item">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2L4.5 13.5H11L9.8 22 19 10h-6.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="t">Up-to-Date<small>AI &amp; Tech Topics</small></span>
+            </div>
+            <div class="why-item">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 2.8v5.4c0 4.6-3 7.7-7 9.3-4-1.6-7-4.7-7-9.3V5.8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 11.8l2.2 2.2L15.4 9.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="t">Trusted by<small>Students &amp; Professionals</small></span>
+            </div>
+          </div>
+        </div>
+
+        <section>
+          <div class="sec-head">
+            <h2>How to get your book</h2>
+            <p>There is no account to create and nothing to install. Copy your My Library list and send it to the Gurmad team on WhatsApp or email.</p>
+          </div>
+          <ol class="steps">
+            <li>
+              <span class="n">1</span>
+              <h3>Explore the Book</h3>
+              <p>Every book has its own page. Explore the Book there first — read its Selected Pages and Featured Chapter inside the book — then choose the edition you want and tap Get Full Access.</p>
+              <p class="so" lang="so">Buug kasta boggiisa fur, sahami buugga, akhri Bogagga la soo xulay iyo Cutubka la soo xulay, kadibna ku dar Maktabaddayda.</p>
+            </li>
+            <li>
+              <span class="n">2</span>
+              <h3>Send your My Library list</h3>
+              <p>From any book, tap “Order on WhatsApp” — your My Library list is already written in the message, just press send. Prefer email? “Copy My Library details” and paste, or use the email button. We confirm payment — EVC Plus, eDahab, or bank transfer — and the total before you pay.</p>
+              <p class="so" lang="so">Riix “Copy My Library details” — fariinta waa kuu diyaarsan tahay — kadibna ku dir WhatsApp +252 907 327 475 ama email. Waxaan kuu xaqiijinaynaa qiimaha iyo lacag-bixinta.</p>
+            </li>
+            <li>
+              <span class="n">3</span>
+              <h3>Receive full access</h3>
+              <p>Once payment is confirmed, your full PDF and Word files are sent to your WhatsApp and email — the complete book, ready to read on phone, tablet, or computer.</p>
+              <p class="so" lang="so">Marka lacagta la xaqiijiyo, faylasha buuxa ee PDF iyo Word ayaa laguu soo dirayaa.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="help">
+          <div class="sec-head">
+            <h2>Help — Good to know</h2>
+          </div>
+          <div class="faq">
+            <div>
+              <h3>What is the Complimentary Reading Edition?</h3>
+              <p>On each book's own page, Inside the Book (<span lang="so">Gudaha buugga</span>) shows its Selected Pages (<span lang="so">Bogag la soo xulay</span>) — title pages, contents, and the Featured Chapter (<span lang="so">Cutub la soo xulay</span>). You can also download the same pages as the Complimentary Reading Edition (<span lang="so">Nuqul akhris oo bilaash ah</span>) PDF, free to keep and share. The rest of the book opens when you Get Full Access (<span lang="so">Hel buugga oo dhammaystiran</span>).</p>
+            </div>
+            <div>
+              <h3>Which language are the books in?</h3>
+              <p>Both. Every concept is explained in English and in natural Somali side by side — technical terms are defined in English with a full Somali explanation of what the idea means, not just a word-for-word translation.</p>
+            </div>
+            <div>
+              <h3>Can I get all three books together?</h3>
+              <p>Yes — the <strong>Complete AI Learning Collection</strong> (<span lang="so">Taxanaha buugaagta waxbarashada</span>) brings all three full editions together for <strong>$18.00</strong> instead of $25.00 bought separately (Save $7, 28%). Or get any single book on its own — each book is complete by itself, with its own subject and its own page, and new books will be added to the library over time.</p>
+            </div>
+            <div>
+              <h3>How do I receive a book?</h3>
+              <p>Digitally. Each book is delivered as a PDF plus an editable Microsoft Word (DOCX) file, sent to your WhatsApp and email after payment is confirmed. There is no shipping wait.</p>
+            </div>
+            <div>
+              <h3>Buying for a school or class?</h3>
+              <p>Add a note in the My Library form with the number of students or teachers. Gurmad Educational Hub works with schools and training groups across Somalia and can arrange group delivery and support.</p>
+            </div>
+            <div>
+              <h3>When do coming-soon books arrive?</h3>
+              <p>They are in preparation now. Open a coming-soon book's page, copy our WhatsApp number (+252 907 327 475) and message us the book's name — we will reply on WhatsApp as soon as that book is released, with its final contents and page count.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: BOOKS ================= -->
+    <div class="view" data-view="books">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · Books</p>
+          <h1>The <span>Books</span> Page</h1>
+          <p>All books in Gurmad Library — the Complete Learning Collection. Every title below opens its own page — its own cover, contents, page count, Inside the Book selected pages, Book Showcase, and Featured Chapter. New titles are added here as they are published.</p><p><strong>Complete Learning Collection</strong> · <span lang="so">Taxanaha buugaagta waxbarashada</span></p>
+          <p lang="so">Dhammaan buugaagta maktabadda. Buug kasta boggiisa gaarka ah ayuu leeyahay.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="sec-head">
+            <h2>Available now</h2>
+          </div>
+          <div class="books">
+            <article class="book book-card" data-book-card data-cat="reference" data-name="the ai and tech terminology handbook glossary reference erey-bixin">
+              <div class="book-main">
+                <a class="cov" href="#/book/one"><img src="assets/cover-one.jpg" alt="Cover of The AI &amp; Tech Terminology Handbook" width="652" height="805" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-reference">Reference</span>
+                  <h3><a href="#/book/one">The AI &amp; Tech Terminology Handbook</a></h3>
+                  <p class="desc">A Practical Glossary of AI, Software, and Digital Technology — Buugga Erey-bixinta AI &amp; Teknoolojiyadda. 512 glossary terms, A–Z.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>749 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>267 pages (Visual Edition)</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$5.00</span><span class="price-was">$7.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/one">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="one">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="one">Get Full Access — $5.00</button>
+                <p class="added-note" data-note-card="one" aria-live="polite"></p>
+              </div>
+            </article>
+            <article class="book book-card" data-book-card data-cat="practical" data-name="prompt engineering prompts practical guide chatgpt gemini claude grok">
+              <div class="book-main">
+                <a class="cov" href="#/book/two"><img src="assets/cover-two.jpg" alt="Cover of Prompt Engineering — The Complete Practical Guide" width="608" height="708" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-practical">Practical Skills</span>
+                  <h3><a href="#/book/two">Prompt Engineering</a></h3>
+                  <p class="desc">The Complete Practical Guide — Hagaha Dhamaystiran ee Qorista Prompts-ka AI. 17 prompt types, 15 advanced techniques, 32 ready prompts.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>88 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>48 pages (Visual Edition)</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$8.00</span><span class="price-was">$10.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/two">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="two">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="two">Get Full Access — $8.00</button>
+                <p class="added-note" data-note-card="two" aria-live="polite"></p>
+              </div>
+            </article>
+            <article class="book book-card" data-book-card data-cat="advanced" data-name="ai mastery beginner advanced machine learning agents automation">
+              <div class="book-main">
+                <a class="cov" href="#/book/three"><img src="assets/cover-three.jpg" alt="Cover of AI Mastery — From Beginner to Advanced" width="640" height="835" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-advanced">Advanced Learning</span>
+                  <h3><a href="#/book/three">AI Mastery</a></h3>
+                  <p class="desc">From Beginner to Advanced — Laga Bilaabo Aasaaska ilaa Heer Sare (Advanced). 30 chapters in six parts, 5 capstone projects.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>430 pages (Complete Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Projects &amp; Real Examples</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$12.00</span><span class="price-was">$15.00</span><span class="save-pill">Save $3</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/three">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="three">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="three">Get Full Access — $12.00</button>
+                <p class="added-note" data-note-card="three" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head">
+            <h2>Coming soon to the library</h2>
+            <p>In preparation — each of these will get its own page here, with its own Inside the Book selected pages and Featured Chapter, when it is released.</p>
+          </div>
+          <div class="books">
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">AI for Business &amp; Productivity<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>AI for Business &amp; Productivity</h3>
+                <p class="sub" lang="so">AI-ga Ganacsiga iyo Wax-soo-saarka</p>
+                <p class="desc">Use AI to grow your business, automate work, and be more productive.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/business">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Build with AI Tools<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Build with AI Tools</h3>
+                <p class="sub" lang="so">Ku-dhisidda Aaladaha AI</p>
+                <p class="desc">Practical guide to building websites, apps, and digital products with AI.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/build">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Digital Marketing with AI<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Digital Marketing with AI</h3>
+                <p class="sub" lang="so">Suuq-geynta Dijitaalka ah ee AI</p>
+                <p class="desc">Modern strategies and AI tools for marketing, content, and business growth.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/marketing">About this book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: COMING SOON ================= -->
+    <div class="view" data-view="coming">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · Coming Soon</p>
+          <h1>Coming <span>Soon</span></h1>
+          <p>Books now in preparation for Gurmad Library. Final contents and page counts are announced on each book's page at release — message us on WhatsApp at +252 907 327 475 (copy the number from the book's page) and we will reply the moment it is out.</p>
+          <p lang="so">Buugaag soo socda — markay soo baxaan, boggooda gaarka ah ayay halkan ka heli doonaan.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="books">
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">AI for Business &amp; Productivity<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>AI for Business &amp; Productivity</h3>
+                <p class="sub" lang="so">AI-ga Ganacsiga iyo Wax-soo-saarka</p>
+                <p class="desc">Use AI to grow your business, automate work, and be more productive.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/business">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Build with AI Tools<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Build with AI Tools</h3>
+                <p class="sub" lang="so">Ku-dhisidda Aaladaha AI</p>
+                <p class="desc">Practical guide to building websites, apps, and digital products with AI.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/build">About this book</a>
+                </div>
+              </div>
+            </article>
+            <article class="book">
+              <div class="soon-cover"><div class="soon-glyph">Digital Marketing with AI<small>Coming soon</small></div></div>
+              <div class="body">
+                <span class="badge badge-soon">Coming soon</span>
+                <h3>Digital Marketing with AI</h3>
+                <p class="sub" lang="so">Suuq-geynta Dijitaalka ah ee AI</p>
+                <p class="desc">Modern strategies and AI tools for marketing, content, and business growth.</p>
+                <div class="foot">
+                  <a class="btn btn-view" href="#/soon/marketing">About this book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <p style="color:var(--ink-soft); margin-top:26px;">More titles will be added to this page as they enter preparation. <a href="#/books">Browse the books available now →</a></p>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: BOOK ONE ================= -->
+    <div class="view" data-view="book-one">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · Terminology Handbook</p>
+          <h1>The AI &amp; Tech <span>Terminology Handbook</span></h1>
+          <p>A Practical Glossary of AI, Software, and Digital Technology — Buugga Erey-bixinta AI &amp; Teknoolojiyadda. Gurmad Technology · First Edition 2026 · English – Somali.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="d-cover">
+            <img src="assets/cover-one.jpg" alt="Cover of The AI &amp; Tech Terminology Handbook" width="652" height="805" />
+          </div>
+          <div>
+            <span class="badge badge-now">Available now</span>
+            <h2>The AI &amp; Tech Terminology Handbook</h2>
+            <p class="d-sub">A Practical Glossary of AI, Software, and Digital Technology</p>
+            <p class="d-price"><span class="price-now">$5.00</span><span class="price-was">$7.00</span><span class="save-pill">Save $2</span><span class="kind">Digital Edition — PDF + Word (DOCX), delivered on WhatsApp &amp; email after payment is confirmed</span></p>
+            <p class="d-desc">The reference handbook: the key terms of AI, software, and digital technology, each explained clearly in English and Somali with examples and illustrations — an A–Z handbook you return to again and again, whether you are a student meeting a term in class or a professional meeting it at work.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa:</p>
+            <ul class="learn" lang="so">
+              <li>Ereyada muhiimka ah ee AI, Software &amp; Digital Tech</li>
+              <li>Macnahooda oo si fudud loo sharaxay</li>
+              <li>Tusaalooyin iyo sawirro faham kobciya</li>
+              <li>Qaab Alfabeet (A–Z) ah oo tixraac degdeg ah</li>
+            </ul>
+            <p class="fit" lang="so"><strong>Ku habboon:</strong> Arday, Macallimiin iyo Xirfadlayaal</p>
+            <ul class="specs">
+              <li><strong>749</strong> pages, full edition</li>
+              <li><strong>267</strong> pages, visual edition</li>
+              <li><strong>17</strong> chapters</li>
+              <li><strong>512</strong> glossary terms</li>
+              <li><strong>124</strong> figures &amp; diagrams</li>
+              <li><strong>95</strong> MCQs with answer key</li>
+            </ul>
+            <fieldset class="editions">
+              <legend>Edition</legend>
+              <label class="edition">
+                <input type="radio" name="ed-one" value="Full edition (PDF + Word)" checked />
+                <span><span class="t">Full edition</span><span class="d">Complete textbook — PDF + editable Word (DOCX), 749 pages</span></span>
+              </label>
+              <label class="edition">
+                <input type="radio" name="ed-one" value="Visual edition (PDF + Word)" />
+                <span><span class="t">Visual edition</span><span class="d">Shorter picture edition — PDF + Word (DOCX), 267 pages</span></span>
+              </label>
+            </fieldset>
+            <div class="d-actions actions-stack">
+              <button class="btn btn-explore" type="button" data-explore="one">Explore the Book · <span lang="so">Sahami buugga</span></button>
+              <button class="btn btn-sample" type="button" data-dl="one">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span> (PDF)</button>
+              <button class="btn btn-add" type="button" data-add="one">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+              <a class="btn btn-wa" href="#" target="_blank" rel="noopener" data-wa-book="one">Order on WhatsApp · <span lang="so">Ku dalbo WhatsApp</span></a>
+            </div>
+            <p class="fit"><strong>Complimentary Reading Edition</strong> · <span lang="so">Nuqul akhris oo bilaash ah</span> — the Featured Chapter (<span lang="so">Cutub la soo xulay</span>) as a free PDF. Full access is confirmed on WhatsApp before you pay.</p>
+            <p class="added-note" data-note="one" aria-live="polite"></p>
+            <figure class="d-promo">
+              <img src="assets/promo-terminology.jpg" alt="Book Showcase for The AI &amp; Tech Terminology Handbook, with what you will learn and who it is for" width="1284" height="1406" loading="lazy" />
+              <figcaption>
+                <span><strong>Book Showcase</strong> · <span lang="so">Soo bandhigista buugga</span> — share this showcase with students and colleagues.</span>
+                <a class="dl-link" href="assets/promo-terminology.jpg" download>Download Book Showcase</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <section>
+          <div class="sec-head">
+            <h2>Inside the Book · <span lang="so">Gudaha buugga</span></h2>
+            <p><strong>Selected Pages</strong> · <span lang="so">Bogag la soo xulay</span> — the opening pages of the Terminology Handbook: the introduction, the Featured Chapter (<span lang="so">Cutub la soo xulay</span>), and illustrations. Explore the Book below; when the Selected Pages end, the reader locks — Get Full Access (<span lang="so">Hel buugga oo dhammaystiran</span>) to open all 749 pages.</p>
+            <p lang="so">Bogag la soo xulay oo Gudaha buugga ah — Nuqul akhris oo bilaash ah. Markay dhammaadaan, hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+            <div class="inside-strip" aria-label="Inside the Book — what the selected pages show">
+              <figure>
+                <img src="assets/preview/one/p-01.jpg" alt="Inside the Book — introduction page of the Terminology Handbook" width="794" height="1123" loading="lazy" />
+                <figcaption>Introduction<small lang="so">Hordhac</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/one/p-02.jpg" alt="Inside the Book — Featured Chapter page of the Terminology Handbook" width="794" height="1123" loading="lazy" />
+                <figcaption>Featured Chapter<small lang="so">Cutub la soo xulay</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/one/p-03.jpg" alt="Inside the Book — illustrations page of the Terminology Handbook" width="794" height="1123" loading="lazy" />
+                <figcaption>Illustrations<small lang="so">Sawirro</small></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="reader" data-reader="one">
+            <div class="reader-meta">
+              <span class="rt">The AI &amp; Tech Terminology Handbook</span>
+              <span class="rf r-free"></span>
+            </div>
+            <div class="progress" aria-hidden="true"><i class="r-progress"></i></div>
+            <div class="reader-stage">
+              <img class="r-img" src="assets/preview/one/p-01.jpg" alt="Inside the Book — Selected Pages page of The AI &amp; Tech Terminology Handbook" width="794" height="1123" />
+              <div class="lock">
+                <div class="lock-ic" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="#22c8f5" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#17cf8b" stroke-width="2"/><circle cx="12" cy="15" r="1.8" fill="#22c8f5"/></svg>
+                </div>
+                <h3>Selected Pages ended — <span>Get Full Access</span></h3>
+                <p class="r-lock-text"></p>
+                <p class="so" lang="so">Waad akhriday dhammaan Bogagga la soo xulay ee buuggan. Hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+                <div class="lock-ctas">
+                  <button class="btn btn-unlock r-lock-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+                  <button class="btn btn-ghost" type="button" data-dl="one">Download Reading Edition</button>
+                </div>
+              </div>
+            </div>
+            <div class="reader-controls">
+              <button class="btn nav-btn r-prev" type="button">← Previous</button>
+              <span class="count r-count" aria-live="polite"></span>
+              <button class="btn nav-btn r-next" type="button">Next →</button>
+            </div>
+            <div class="reader-foot">
+              <button class="btn btn-sample2" type="button" data-dl="one">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span></button>
+              <button class="btn btn-order2 r-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+            </div>
+          </div>
+          <a class="backlink" href="#/books">← Back to the Books page</a>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: BOOK TWO ================= -->
+    <div class="view" data-view="book-two">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · Prompt Engineering</p>
+          <h1>Prompt <span>Engineering</span></h1>
+          <p>The Complete Practical Guide — Hagaha Dhamaystiran ee Qorista Prompts-ka AI. Gurmad Technology · First Edition 2026 · English – Somali.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="d-cover">
+            <img src="assets/cover-two.jpg" alt="Cover of Prompt Engineering — The Complete Practical Guide" width="608" height="708" />
+          </div>
+          <div>
+            <span class="badge badge-now">Available now</span>
+            <h2>Prompt Engineering</h2>
+            <p class="d-sub">The Complete Practical Guide — Mastering AI Communication, Prompt Design, and Context for Real Results</p>
+            <p class="d-price"><span class="price-now">$8.00</span><span class="price-was">$10.00</span><span class="save-pill">Save $2</span><span class="kind">Digital Edition — PDF + Word (DOCX), delivered on WhatsApp &amp; email after payment is confirmed</span></p>
+            <p class="d-desc">Master AI communication: prompt fundamentals, 17 prompt types, and 15 advanced techniques including Chain-of-Thought, ReAct, and context engineering — with prompting guides for ChatGPT, Gemini, Grok, and Claude, plus a ready-to-use library of 32 prompts for study, work, and business.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa:</p>
+            <ul class="learn" lang="so">
+              <li>Sida si xirfad leh loola xiriiro AI (Prompting)</li>
+              <li>Qaababka iyo xeeladaha qorista prompts-ka</li>
+              <li>Templates diyaar u ah isticmaalka</li>
+              <li>Tusaalooyin dhabta ah (Waxbarasho, Shaqo, Ganacsi)</li>
+              <li>Sidee natiijooyin saxan oo tayo leh loo helo</li>
+            </ul>
+            <p class="fit" lang="so"><strong>Ku habboon:</strong> Arday, Shaqaale, Hal-abuurayaal iyo Ganacsato</p>
+            <ul class="specs">
+              <li><strong>88</strong> pages, full edition</li>
+              <li><strong>48</strong> pages, visual edition</li>
+              <li><strong>49</strong> terms in full A–J format</li>
+              <li><strong>32</strong> ready-to-use prompts</li>
+              <li><strong>10</strong> teaching figures</li>
+              <li><strong>20</strong> MCQs + exercises &amp; rubric</li>
+            </ul>
+            <fieldset class="editions">
+              <legend>Edition</legend>
+              <label class="edition">
+                <input type="radio" name="ed-two" value="Full edition (PDF + Word)" checked />
+                <span><span class="t">Full edition</span><span class="d">Complete textbook — PDF + editable Word (DOCX), 88 pages</span></span>
+              </label>
+              <label class="edition">
+                <input type="radio" name="ed-two" value="Visual edition (PDF + Word)" />
+                <span><span class="t">Visual edition</span><span class="d">Shorter picture edition — PDF + Word (DOCX), 48 pages</span></span>
+              </label>
+            </fieldset>
+            <div class="d-actions actions-stack">
+              <button class="btn btn-explore" type="button" data-explore="two">Explore the Book · <span lang="so">Sahami buugga</span></button>
+              <button class="btn btn-sample" type="button" data-dl="two">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span> (PDF)</button>
+              <button class="btn btn-add" type="button" data-add="two">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+              <a class="btn btn-wa" href="#" target="_blank" rel="noopener" data-wa-book="two">Order on WhatsApp · <span lang="so">Ku dalbo WhatsApp</span></a>
+            </div>
+            <p class="fit"><strong>Complimentary Reading Edition</strong> · <span lang="so">Nuqul akhris oo bilaash ah</span> — the Featured Chapter (<span lang="so">Cutub la soo xulay</span>) as a free PDF. Full access is confirmed on WhatsApp before you pay.</p>
+            <p class="added-note" data-note="two" aria-live="polite"></p>
+            <figure class="d-promo tall">
+              <img src="assets/promo-prompt.jpg" alt="Book Showcase for Prompt Engineering, with what you will learn" width="428" height="856" loading="lazy" />
+              <figcaption>
+                <span><strong>Book Showcase</strong> · <span lang="so">Soo bandhigista buugga</span> — share this showcase with students and colleagues.</span>
+                <a class="dl-link" href="assets/promo-prompt.jpg" download>Download Book Showcase</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <section>
+          <div class="sec-head">
+            <h2>Inside the Book · <span lang="so">Gudaha buugga</span></h2>
+            <p><strong>Selected Pages</strong> · <span lang="so">Bogag la soo xulay</span> — the opening pages of Prompt Engineering: the introduction, the Featured Chapter (<span lang="so">Cutub la soo xulay</span>), and illustrations. Explore the Book below; when the Selected Pages end, the reader locks — Get Full Access (<span lang="so">Hel buugga oo dhammaystiran</span>) to open all 88 pages.</p>
+            <p lang="so">Bogag la soo xulay oo Gudaha buugga ah — Nuqul akhris oo bilaash ah. Markay dhammaadaan, hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+            <div class="inside-strip" aria-label="Inside the Book — what the selected pages show">
+              <figure>
+                <img src="assets/preview/two/p-01.jpg" alt="Inside the Book — introduction page of Prompt Engineering" width="794" height="1123" loading="lazy" />
+                <figcaption>Introduction<small lang="so">Hordhac</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/two/p-02.jpg" alt="Inside the Book — Featured Chapter page of Prompt Engineering" width="794" height="1123" loading="lazy" />
+                <figcaption>Featured Chapter<small lang="so">Cutub la soo xulay</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/two/p-03.jpg" alt="Inside the Book — illustrations page of Prompt Engineering" width="794" height="1123" loading="lazy" />
+                <figcaption>Illustrations<small lang="so">Sawirro</small></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="reader" data-reader="two">
+            <div class="reader-meta">
+              <span class="rt">Prompt Engineering</span>
+              <span class="rf r-free"></span>
+            </div>
+            <div class="progress" aria-hidden="true"><i class="r-progress"></i></div>
+            <div class="reader-stage">
+              <img class="r-img" src="assets/preview/two/p-01.jpg" alt="Inside the Book — Selected Pages page of Prompt Engineering" width="794" height="1123" />
+              <div class="lock">
+                <div class="lock-ic" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="#22c8f5" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#17cf8b" stroke-width="2"/><circle cx="12" cy="15" r="1.8" fill="#22c8f5"/></svg>
+                </div>
+                <h3>Selected Pages ended — <span>Get Full Access</span></h3>
+                <p class="r-lock-text"></p>
+                <p class="so" lang="so">Waad akhriday dhammaan Bogagga la soo xulay ee buuggan. Hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+                <div class="lock-ctas">
+                  <button class="btn btn-unlock r-lock-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+                  <button class="btn btn-ghost" type="button" data-dl="two">Download Reading Edition</button>
+                </div>
+              </div>
+            </div>
+            <div class="reader-controls">
+              <button class="btn nav-btn r-prev" type="button">← Previous</button>
+              <span class="count r-count" aria-live="polite"></span>
+              <button class="btn nav-btn r-next" type="button">Next →</button>
+            </div>
+            <div class="reader-foot">
+              <button class="btn btn-sample2" type="button" data-dl="two">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span></button>
+              <button class="btn btn-order2 r-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+            </div>
+          </div>
+          <a class="backlink" href="#/books">← Back to the Books page</a>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: BOOK THREE ================= -->
+    <div class="view" data-view="book-three">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · AI Mastery</p>
+          <h1>AI <span>Mastery</span></h1>
+          <p>From Beginner to Advanced — The Complete Practical Guide to Artificial Intelligence. Gurmad Technology · First Edition 2026 · English – Somali.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="d-cover">
+            <img src="assets/cover-three.jpg" alt="Cover of AI Mastery — From Beginner to Advanced" width="640" height="835" />
+          </div>
+          <div>
+            <span class="badge badge-now">Available now</span>
+            <h2>AI Mastery</h2>
+            <p class="d-sub">From Beginner to Advanced — Laga Bilaabo Aasaaska ilaa Heer Sare (Advanced)</p>
+            <p class="d-price"><span class="price-now">$12.00</span><span class="price-was">$15.00</span><span class="save-pill">Save $3</span><span class="kind">Digital Edition — PDF + Word (DOCX), delivered on WhatsApp &amp; email after payment is confirmed</span></p>
+            <p class="d-desc">The complete learning program: 30 chapters in six parts, from what AI is to Python, machine learning, deep learning, RAG assistants, AI agents, and deploying a full AI SaaS application — ending with five hands-on capstone projects.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa:</p>
+            <ul class="learn" lang="so">
+              <li>Aasaaska AI iyo sida uu u shaqeeyo</li>
+              <li>Isticmaalka qalabka AI ee casriga ah</li>
+              <li>Abuurista content (sawir, video, cod) adoo adeegsanaya AI</li>
+              <li>Dhisidda websites, apps iyo automations leh AI</li>
+              <li>Machine Learning, LLMs, RAG iyo AI Agents</li>
+              <li>Mashaariic dhameystiran iyo deployment</li>
+            </ul>
+            <p class="fit" lang="so"><strong>Ku habboon:</strong> Arday, Engineers, Developers &amp; Entrepreneurs</p>
+            <ul class="specs">
+              <li><strong>430</strong> pages (PDF)</li>
+              <li><strong>30</strong> chapters in 6 parts</li>
+              <li><strong>5</strong> capstone projects</li>
+              <li><strong>150</strong> questions with keys</li>
+              <li><strong>64</strong> figures &amp; diagrams</li>
+              <li><strong>450</strong> glossary terms</li>
+            </ul>
+            <fieldset class="editions">
+              <legend>Edition</legend>
+              <label class="edition">
+                <input type="radio" name="ed-three" value="Full edition (PDF + Word)" checked />
+                <span><span class="t">Full edition</span><span class="d">Complete textbook — PDF (430 pages) + editable Word (DOCX)</span></span>
+              </label>
+            </fieldset>
+            <div class="d-actions actions-stack">
+              <button class="btn btn-explore" type="button" data-explore="three">Explore the Book · <span lang="so">Sahami buugga</span></button>
+              <button class="btn btn-sample" type="button" data-dl="three">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span> (PDF)</button>
+              <button class="btn btn-add" type="button" data-add="three">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+              <a class="btn btn-wa" href="#" target="_blank" rel="noopener" data-wa-book="three">Order on WhatsApp · <span lang="so">Ku dalbo WhatsApp</span></a>
+            </div>
+            <p class="fit"><strong>Complimentary Reading Edition</strong> · <span lang="so">Nuqul akhris oo bilaash ah</span> — the Featured Chapter (<span lang="so">Cutub la soo xulay</span>) as a free PDF. Full access is confirmed on WhatsApp before you pay.</p>
+            <p class="added-note" data-note="three" aria-live="polite"></p>
+            <figure class="d-promo">
+              <img src="assets/promo-ai-mastery.jpg" alt="Book Showcase for AI Mastery — Buugga Dhamaystiran ee AI — with what you will learn and how to get the book" width="1284" height="1406" loading="lazy" />
+              <figcaption>
+                <span><strong>Book Showcase</strong> · <span lang="so">Soo bandhigista buugga</span> — share this showcase with students and colleagues.</span>
+                <a class="dl-link" href="assets/promo-ai-mastery.jpg" download>Download Book Showcase</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <section>
+          <div class="sec-head">
+            <h2>Inside the Book · <span lang="so">Gudaha buugga</span></h2>
+            <p><strong>Selected Pages</strong> · <span lang="so">Bogag la soo xulay</span> — the opening pages of AI Mastery: the introduction, the Featured Chapter (<span lang="so">Cutub la soo xulay</span>), and illustrations. Explore the Book below; when the Selected Pages end, the reader locks — Get Full Access (<span lang="so">Hel buugga oo dhammaystiran</span>) to open all 430 pages.</p>
+            <p lang="so">Bogag la soo xulay oo Gudaha buugga ah — Nuqul akhris oo bilaash ah. Markay dhammaadaan, hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+            <div class="inside-strip" aria-label="Inside the Book — what the selected pages show">
+              <figure>
+                <img src="assets/preview/three/p-01.jpg" alt="Inside the Book — introduction page of AI Mastery" width="794" height="1123" loading="lazy" />
+                <figcaption>Introduction<small lang="so">Hordhac</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/three/p-02.jpg" alt="Inside the Book — Featured Chapter page of AI Mastery" width="794" height="1123" loading="lazy" />
+                <figcaption>Featured Chapter<small lang="so">Cutub la soo xulay</small></figcaption>
+              </figure>
+              <figure>
+                <img src="assets/preview/three/p-03.jpg" alt="Inside the Book — illustrations page of AI Mastery" width="794" height="1123" loading="lazy" />
+                <figcaption>Illustrations<small lang="so">Sawirro</small></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="reader" data-reader="three">
+            <div class="reader-meta">
+              <span class="rt">AI Mastery</span>
+              <span class="rf r-free"></span>
+            </div>
+            <div class="progress" aria-hidden="true"><i class="r-progress"></i></div>
+            <div class="reader-stage">
+              <img class="r-img" src="assets/preview/three/p-01.jpg" alt="Inside the Book — Selected Pages page of AI Mastery" width="794" height="1123" />
+              <div class="lock">
+                <div class="lock-ic" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="#22c8f5" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#17cf8b" stroke-width="2"/><circle cx="12" cy="15" r="1.8" fill="#22c8f5"/></svg>
+                </div>
+                <h3>Selected Pages ended — <span>Get Full Access</span></h3>
+                <p class="r-lock-text"></p>
+                <p class="so" lang="so">Waad akhriday dhammaan Bogagga la soo xulay ee buuggan. Hel buugga oo dhammaystiran si aad u furto bogagga oo dhan.</p>
+                <div class="lock-ctas">
+                  <button class="btn btn-unlock r-lock-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+                  <button class="btn btn-ghost" type="button" data-dl="three">Download Reading Edition</button>
+                </div>
+              </div>
+            </div>
+            <div class="reader-controls">
+              <button class="btn nav-btn r-prev" type="button">← Previous</button>
+              <span class="count r-count" aria-live="polite"></span>
+              <button class="btn nav-btn r-next" type="button">Next →</button>
+            </div>
+            <div class="reader-foot">
+              <button class="btn btn-sample2" type="button" data-dl="three">Download Reading Edition · <span lang="so">Soo dejiso nuqulka akhriska</span></button>
+              <button class="btn btn-order2 r-order" type="button">Get Full Access · <span lang="so">Hel buugga oo dhammaystiran</span></button>
+            </div>
+          </div>
+          <a class="backlink" href="#/books">← Back to the Books page</a>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: COMING SOON — BUILD ================= -->
+    <div class="view" data-view="soon-build">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/coming-soon">Coming Soon</a> · Build with AI Tools</p>
+          <h1>Build with <span>AI Tools</span></h1>
+          <p lang="so">Ku-dhisidda Aaladaha AI — buuggan waa soo socdaa.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="soon-cover"><div class="soon-glyph">Build with AI Tools<small>Coming soon</small></div></div>
+          <div>
+            <span class="badge badge-soon">Coming soon — in preparation</span>
+            <h2>Build with AI Tools</h2>
+            <p class="d-sub" lang="so">Ku-dhisidda Aaladaha AI</p>
+            <p class="d-desc">A practical guide to building websites, apps, and digital products with AI, in English and Somali: planning a product, designing the interface, generating and reviewing code, testing, and deploying — with honest guidance on what AI-built code still needs from a human. Final contents and page count will be announced on this page when the book is released.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa (marka uu soo baxo):</p>
+            <ul class="learn" lang="so">
+              <li>Dhisidda websites iyo apps adoo AI adeegsanaya</li>
+              <li>Qorshaynta iyo naqshadaynta alaabta dijitaalka ah</li>
+              <li>Tijaabinta codka iyo daabacaadda (deployment)</li>
+              <li>Mashaariic dhab ah oo tallaabo-tallaabo ah</li>
+            </ul>
+            <div class="d-actions">
+              <div class="contact-card">
+                <p><strong>To be notified when it is out</strong>, message us on WhatsApp or email us and ask for “Build with AI Tools”:</p>
+                <p>WhatsApp: <span class="contact-num">+252 907 327 475</span><button class="copy-btn" type="button" data-copy="+252 907 327 475">Copy number</button></p>
+                <p>Email: <a href="mailto:gurmad@gurmadtechnology.online">gurmad@gurmadtechnology.online</a></p>
+              </div>
+              <a class="btn btn-wa" href="https://wa.me/252907327475?text=Hello%20Gurmad%20Technology%2C%20please%20notify%20me%20when%20Build%20with%20AI%20Tools%20is%20released%20in%20Gurmad%20Library.%20Thank%20you." target="_blank" rel="noopener">Notify me on WhatsApp</a>
+              <a class="btn btn-sample" href="#/coming-soon">All coming-soon books</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: COMING SOON — BUSINESS ================= -->
+    <div class="view" data-view="soon-business">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/coming-soon">Coming Soon</a> · AI for Business &amp; Productivity</p>
+          <h1>AI for <span>Business</span> &amp; Productivity</h1>
+          <p lang="so">AI-ga Ganacsiga iyo Wax-soo-saarka — buuggan waa soo socdaa.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="soon-cover"><div class="soon-glyph">AI for Business &amp; Productivity<small>Coming soon</small></div></div>
+          <div>
+            <span class="badge badge-soon">Coming soon — in preparation</span>
+            <h2>AI for Business &amp; Productivity</h2>
+            <p class="d-sub" lang="so">AI-ga Ganacsiga iyo Wax-soo-saarka</p>
+            <p class="d-desc">Use AI to grow your business, automate work, and be more productive — a practical guide in English and Somali for shop owners, schools, clinics, and small companies: customer messages, documents, marketing content, and simple automations that save time every day. Final contents and page count will be announced on this page when the book is released.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa (marka uu soo baxo):</p>
+            <ul class="learn" lang="so">
+              <li>Kobcinta ganacsiga adoo adeegsanaya AI</li>
+              <li>Automation-ka shaqada maalinlaha ah</li>
+              <li>Maaraynta fariimaha iyo weydiimaha macaamiisha</li>
+              <li>Wax-soo-saar badan adoo waqti yar ku bixinaya</li>
+            </ul>
+            <div class="d-actions">
+              <div class="contact-card">
+                <p><strong>To be notified when it is out</strong>, message us on WhatsApp or email us and ask for “AI for Business &amp; Productivity”:</p>
+                <p>WhatsApp: <span class="contact-num">+252 907 327 475</span><button class="copy-btn" type="button" data-copy="+252 907 327 475">Copy number</button></p>
+                <p>Email: <a href="mailto:gurmad@gurmadtechnology.online">gurmad@gurmadtechnology.online</a></p>
+              </div>
+              <a class="btn btn-wa" href="https://wa.me/252907327475?text=Hello%20Gurmad%20Technology%2C%20please%20notify%20me%20when%20AI%20for%20Business%20and%20Productivity%20is%20released%20in%20Gurmad%20Library.%20Thank%20you." target="_blank" rel="noopener">Notify me on WhatsApp</a>
+              <a class="btn btn-sample" href="#/coming-soon">All coming-soon books</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: COMING SOON — MARKETING ================= -->
+    <div class="view" data-view="soon-marketing">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/coming-soon">Coming Soon</a> · Digital Marketing with AI</p>
+          <h1>Digital Marketing <span>with AI</span></h1>
+          <p lang="so">Suuq-geynta Dijitaalka ah ee AI — buuggan waa soo socdaa.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="soon-cover"><div class="soon-glyph">Digital Marketing with AI<small>Coming soon</small></div></div>
+          <div>
+            <span class="badge badge-soon">Coming soon — in preparation</span>
+            <h2>Digital Marketing with AI</h2>
+            <p class="d-sub" lang="so">Suuq-geynta Dijitaalka ah ee AI</p>
+            <p class="d-desc">Modern strategies and AI tools for marketing, content, and business growth, in English and Somali: planning campaigns, creating posts and product content with AI, understanding customers, and measuring what works. Final contents and page count will be announced on this page when the book is released.</p>
+            <p class="learn-head" lang="so">Waxaad ku baran doontaa (marka uu soo baxo):</p>
+            <ul class="learn" lang="so">
+              <li>Xeeladaha suuq-geynta dijitaalka ah ee casriga ah</li>
+              <li>Abuurista content (qoraal, sawir, muuqaal) adoo AI adeegsanaya</li>
+              <li>Xayeysiinta baraha bulshada iyo kobcinta macaamiisha</li>
+              <li>Cabbirka natiijooyinka iyo horumarinta ololaha</li>
+            </ul>
+            <div class="d-actions">
+              <div class="contact-card">
+                <p><strong>To be notified when it is out</strong>, message us on WhatsApp or email us and ask for “Digital Marketing with AI”:</p>
+                <p>WhatsApp: <span class="contact-num">+252 907 327 475</span><button class="copy-btn" type="button" data-copy="+252 907 327 475">Copy number</button></p>
+                <p>Email: <a href="mailto:gurmad@gurmadtechnology.online">gurmad@gurmadtechnology.online</a></p>
+              </div>
+              <a class="btn btn-wa" href="https://wa.me/252907327475?text=Hello%20Gurmad%20Technology%2C%20please%20notify%20me%20when%20Digital%20Marketing%20with%20AI%20is%20released%20in%20Gurmad%20Library.%20Thank%20you." target="_blank" rel="noopener">Notify me on WhatsApp</a>
+              <a class="btn btn-sample" href="#/coming-soon">All coming-soon books</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: ORDER ================= -->
+    <div class="view" data-view="order">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · My Library</p>
+          <h1>My <span>Library</span></h1>
+          <p>Review the books in your library, add your details, and send. Prices are shown on every book — we reply on WhatsApp to confirm payment (EVC Plus, eDahab, or bank transfer), then send your full books. Getting one book only? That is fine — every book stands on its own.</p><p lang="so">Maktabaddayda — halkan ka eeg buugaagta aad dooratay, kadibna hel buugga oo dhammaystiran.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="order-grid">
+            <div class="panel" aria-live="polite">
+              <h3>Books in My Library · <span lang="so">Maktabaddayda</span></h3>
+              <div id="cart-lines">
+                <p class="cart-empty">Nothing added yet. Open a book's page and tap “Get Full Access”.</p>
+              </div>
+              <p class="cart-total" id="cart-total" hidden></p>
+              <p style="margin-top:16px;"><a href="#/books">← Browse the Books page</a></p>
+            </div>
+            <div class="panel">
+              <h3>Your details</h3>
+              <form id="order-form" novalidate>
+                <label class="f">Your name
+                  <input type="text" id="buyer-name" autocomplete="name" placeholder="e.g. Faadumo Cali" />
+                </label>
+                <label class="f">WhatsApp number
+                  <input type="tel" id="buyer-phone" autocomplete="tel" placeholder="e.g. +252 6X XXX XXXX" />
+                </label>
+                <label class="f">Email for delivery <span style="font-weight:400; color:var(--ink-soft)">(optional)</span>
+                  <input type="email" id="buyer-email" autocomplete="email" placeholder="you@example.com" />
+                </label>
+                <label class="f">Note <span style="font-weight:400; color:var(--ink-soft)">(optional)</span>
+                  <textarea id="buyer-note" placeholder="Anything we should know — e.g. buying for a school or class"></textarea>
+                </label>
+                <div class="order-actions">
+                  <a class="btn btn-wa-main" id="send-wa" href="#" target="_blank" rel="noopener">Order on WhatsApp · <span lang="so">Ku dalbo WhatsApp</span></a>
+                  <button class="btn btn-copy-main" type="button" id="copy-order">Copy My Library details</button>
+                  <button class="btn btn-mail" type="button" id="send-mail">Get Full Access by email instead</button>
+                </div>
+                <p class="form-msg" id="form-msg" aria-live="polite"></p>
+                <p class="pay-note">Copy your details above, then send them to Gurmad Technology on WhatsApp <span class="contact-num">+252 907 327 475</span><button class="copy-btn" type="button" data-copy="+252 907 327 475">Copy number</button> or by email to <a href="mailto:gurmad@gurmadtechnology.online">gurmad@gurmadtechnology.online</a>. Prefer to talk first? Call or message us on the same number.</p>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottomnav" aria-label="Library pages">
+      <div class="bn-in">
+        <a href="#/home" data-nav="home">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11.5L12 4l8 7.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10v9.5h11V10" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+          Home
+        </a>
+        <a href="#/books" data-nav="books">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          Books
+        </a>
+        <a href="#/order" data-nav="order">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          My Library
+          <span class="bn-badge" id="lib-count">0</span>
+        </a>
+        <button type="button" data-note="orders">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Orders
+        </button>
+        <button type="button" data-note="account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c1.2-3.2 3.8-4.8 7-4.8s5.8 1.6 7 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Account
+        </button>
+      </div>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer>
+      <div class="wrap">
+        <div class="stats-bar">
+          <span class="stat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <span><strong>3</strong>Books Available</span>
+          </span>
+          <span class="stat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>3</strong>More Coming Soon</span>
+          </span>
+          <span class="stat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.9 5.2 3.9 8.5s-1.3 6.1-3.9 8.5c-2.6-2.4-3.9-5.2-3.9-8.5S9.4 5.9 12 3.5z" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span><strong>2</strong>Languages (EN–SO)</span>
+          </span>
+          <span class="stat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19.5c.9-2.8 2.9-4.2 5.5-4.2s4.6 1.4 5.5 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="10" r="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M16.5 15.4c2 .2 3.4 1.5 4 4.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span><strong>For</strong>Students, Professionals &amp; Entrepreneurs</span>
+          </span>
+        </div>
+      </div>
+      <div class="wrap cols">
+        <div>
+          <strong>GURMAD LIBRARY · GURMAD TECHNOLOGY</strong>
+          <p>Technology made practical — Garowe, Puntland, Somalia</p>
+        </div>
+        <div>
+          <strong>MY LIBRARY &amp; SUPPORT</strong>
+          <p>
+            WhatsApp: <span class="contact-num">+252 907 327 475</span><button class="copy-btn" type="button" data-copy="+252 907 327 475">Copy</button><br />
+            <a href="mailto:gurmad@gurmadtechnology.online">gurmad@gurmadtechnology.online</a>
+          </p>
+        </div>
+        <div>
+          <strong>ONLINE</strong>
+          <p>
+            <a href="https://gurmadtechnology.online" target="_blank" rel="noopener">gurmadtechnology.online</a><br />
+            Gurmad Educational Hub · Gurmad AI Connect
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var BOOKS = {
+          one: "The AI & Tech Terminology Handbook: A Practical Glossary of AI, Software, and Digital Technology",
+          two: "Prompt Engineering: The Complete Practical Guide",
+          three: "AI Mastery: From Beginner to Advanced",
+          collection: "Complete AI Learning Collection — all 3 books (Terminology Handbook + Prompt Engineering + AI Mastery), Full editions"
+        };
+        var PRICES = { one: 5, two: 8, three: 12, collection: 18 };
+        function money(n) { return "$" + n.toFixed(2); }
+        var EMAIL = "gurmad@gurmadtechnology.online";
+
+        /* ================= Theme (light / dark) ================= */
+        var themeBtn = document.getElementById("theme-toggle");
+        var themeChoice = null; /* visitor's explicit pick; null = automatic */
+        var darkMq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+        function autoTheme() {
+          if (window.innerWidth <= 760) return "dark"; /* mobile layout opens dark, as designed */
+          return darkMq && darkMq.matches ? "dark" : "light";
+        }
+        function applyTheme() {
+          var t = themeChoice || autoTheme();
+          document.documentElement.setAttribute("data-theme", t);
+          if (themeBtn) {
+            var isDark = t === "dark";
+            themeBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
+            themeBtn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+            var lbl = themeBtn.querySelector(".tt-label");
+            if (lbl) lbl.textContent = isDark ? "Light" : "Dark";
+            var sun = themeBtn.querySelector(".ic-sun");
+            var moon = themeBtn.querySelector(".ic-moon");
+            if (sun) sun.style.display = isDark ? "" : "none";
+            if (moon) moon.style.display = isDark ? "none" : "";
+          }
+        }
+        if (themeBtn) {
+          themeBtn.addEventListener("click", function () {
+            var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+            themeChoice = cur === "dark" ? "light" : "dark";
+            applyTheme();
+          });
+        }
+        var themeResizeT = null;
+        window.addEventListener("resize", function () {
+          if (themeChoice) return;
+          if (themeResizeT) window.clearTimeout(themeResizeT);
+          themeResizeT = window.setTimeout(applyTheme, 120);
+        });
+        if (darkMq) {
+          var onMqChange = function () { if (!themeChoice) applyTheme(); };
+          if (darkMq.addEventListener) darkMq.addEventListener("change", onMqChange);
+          else if (darkMq.addListener) darkMq.addListener(onMqChange);
+        }
+        applyTheme();
+
+        /* ================= Router (pages) ================= */
+        var ROUTES = {
+          "": "home",
+          "home": "home",
+          "books": "books",
+          "coming-soon": "coming",
+          "book/one": "book-one",
+          "book/two": "book-two",
+          "book/three": "book-three",
+          "soon/business": "soon-business",
+          "soon/build": "soon-build",
+          "soon/marketing": "soon-marketing",
+          "order": "order"
+        };
+        var NAVMAP = {
+          "home": "home",
+          "books": "books",
+          "coming": "coming",
+          "book-one": "books",
+          "book-two": "books",
+          "book-three": "books",
+          "soon-business": "coming",
+          "soon-build": "coming",
+          "soon-marketing": "coming",
+          "order": "order"
+        };
+        function currentRoute() {
+          var h = window.location.hash.replace(/^#\/?/, "").split("?")[0];
+          return ROUTES.hasOwnProperty(h) ? ROUTES[h] : "home";
+        }
+        function showView() {
+          var view = currentRoute();
+          document.querySelectorAll("[data-view]").forEach(function (el) {
+            el.classList.toggle("active", el.getAttribute("data-view") === view);
+          });
+          var navKey = NAVMAP[view] || "home";
+          document.querySelectorAll("[data-nav]").forEach(function (a) {
+            a.classList.toggle("active", a.getAttribute("data-nav") === navKey);
+          });
+          var titles = {
+            "home": "Gurmad Library — Books by Gurmad Technology",
+            "books": "Books — Gurmad Library",
+            "coming": "Coming Soon — Gurmad Library",
+            "book-one": "The AI & Tech Terminology Handbook — Gurmad Library",
+            "book-two": "Prompt Engineering — Gurmad Library",
+            "book-three": "AI Mastery — Gurmad Library",
+            "soon-business": "AI for Business & Productivity (Coming Soon) — Gurmad Library",
+            "soon-build": "Build with AI Tools (Coming Soon) — Gurmad Library",
+            "soon-marketing": "Digital Marketing with AI (Coming Soon) — Gurmad Library",
+            "order": "My Library · Maktabaddayda — Gurmad Library"
+          };
+          document.title = titles[view] || titles.home;
+          window.scrollTo(0, 0);
+        }
+        window.addEventListener("hashchange", showView);
+
+        /* ================= Cart / order ================= */
+        var cart = {};
+        var linesEl = document.getElementById("cart-lines");
+        var totalEl = document.getElementById("cart-total");
+        var cartCountEl = document.getElementById("cart-count");
+        var libCountEl = document.getElementById("lib-count");
+        var msgEl = document.getElementById("form-msg");
+
+        function cartCount() {
+          var n = 0;
+          for (var k in cart) n += cart[k].qty;
+          return n;
+        }
+        function cartTotal() {
+          var t = 0;
+          for (var k in cart) t += (PRICES[cart[k].book] || 0) * cart[k].qty;
+          return t;
+        }
+        function renderCart() {
+          var keys = Object.keys(cart);
+          if (!keys.length) {
+            linesEl.innerHTML = '<p class="cart-empty">Nothing added yet. Open a book\u2019s page and tap \u201CGet Full Access\u201D.</p>';
+            totalEl.hidden = true;
+          } else {
+            linesEl.innerHTML = "";
+            keys.forEach(function (key) {
+              var item = cart[key];
+              var row = document.createElement("div");
+              row.className = "cart-line";
+              var left = document.createElement("div");
+              var t = document.createElement("span");
+              t.className = "t";
+              t.textContent = item.title;
+              var e = document.createElement("span");
+              e.className = "e";
+              e.textContent = item.edition + " — " + money((PRICES[item.book] || 0) * item.qty);
+              left.appendChild(t);
+              left.appendChild(e);
+              var qty = document.createElement("div");
+              qty.className = "qty";
+              var minus = document.createElement("button");
+              minus.type = "button";
+              minus.textContent = "\u2212";
+              minus.setAttribute("aria-label", "Decrease quantity");
+              minus.addEventListener("click", function () { changeQty(key, -1); });
+              var n = document.createElement("span");
+              n.className = "n";
+              n.textContent = item.qty;
+              var plus = document.createElement("button");
+              plus.type = "button";
+              plus.textContent = "+";
+              plus.setAttribute("aria-label", "Increase quantity");
+              plus.addEventListener("click", function () { changeQty(key, 1); });
+              qty.appendChild(minus);
+              qty.appendChild(n);
+              qty.appendChild(plus);
+              var rm = document.createElement("button");
+              rm.type = "button";
+              rm.className = "remove";
+              rm.textContent = "Remove";
+              rm.addEventListener("click", function () {
+                delete cart[key];
+                renderCart();
+              });
+              row.appendChild(left);
+              row.appendChild(qty);
+              row.appendChild(rm);
+              linesEl.appendChild(row);
+            });
+            var count = cartCount();
+            totalEl.hidden = false;
+            totalEl.innerHTML = "";
+            totalEl.appendChild(document.createTextNode(count + (count === 1 ? " item" : " items") + " in My Library · Total " + money(cartTotal())));
+            var span = document.createElement("span");
+            span.textContent = "Payment (EVC Plus, eDahab, or bank transfer) is confirmed on WhatsApp before your books are sent.";
+            totalEl.appendChild(span);
+          }
+          var c = cartCount();
+          cartCountEl.textContent = c;
+          cartCountEl.classList.toggle("show", c > 0);
+          libCountEl.textContent = c;
+          libCountEl.classList.toggle("show", c > 0);
+        }
+        function changeQty(key, delta) {
+          if (!cart[key]) return;
+          cart[key].qty += delta;
+          if (cart[key].qty <= 0) delete cart[key];
+          renderCart();
+        }
+        function addItem(bookId, edition) {
+          var key = bookId + "|" + edition;
+          if (cart[key]) cart[key].qty += 1;
+          else cart[key] = { book: bookId, title: BOOKS[bookId], edition: edition, qty: 1 };
+          renderCart();
+        }
+        function selectedEdition(bookId) {
+          var checked = document.querySelector('input[name="ed-' + bookId + '"]:checked');
+          return checked ? checked.value : "Full edition (PDF + Word)";
+        }
+        function flashNote(bookId, text) {
+          var note = document.querySelector('[data-note="' + bookId + '"]');
+          if (!note) return;
+          note.textContent = text;
+          window.setTimeout(function () { note.textContent = ""; }, 2600);
+        }
+        document.querySelectorAll("[data-add]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var bookId = btn.getAttribute("data-add");
+            addItem(bookId, selectedEdition(bookId));
+            flashNote(bookId, "Added to My Library \u2713 — open \u201CMy Library · Maktabaddayda\u201D in the menu to get full access.");
+          });
+        });
+        document.getElementById("cart-btn").addEventListener("click", function () { window.location.hash = "#/order"; });
+
+        function buyerDetails() {
+          return {
+            name: document.getElementById("buyer-name").value.trim(),
+            phone: document.getElementById("buyer-phone").value.trim(),
+            email: document.getElementById("buyer-email").value.trim(),
+            note: document.getElementById("buyer-note").value.trim()
+          };
+        }
+        function orderText() {
+          var d = buyerDetails();
+          var lines = [];
+          lines.push("Hello Gurmad Technology, I would like to get full access to these books from Gurmad Library (My Library):");
+          lines.push("");
+          Object.keys(cart).forEach(function (key) {
+            var item = cart[key];
+            lines.push("\u2022 " + item.title);
+            lines.push("  " + item.edition + " \u2014 Qty: " + item.qty + " \u2014 " + money((PRICES[item.book] || 0) * item.qty));
+          });
+          lines.push("");
+          lines.push("Total: " + money(cartTotal()));
+          lines.push("");
+          lines.push("Name: " + (d.name || "\u2014"));
+          if (d.phone) lines.push("WhatsApp: " + d.phone);
+          if (d.email) lines.push("Email for delivery: " + d.email);
+          if (d.note) lines.push("Note: " + d.note);
+          lines.push("");
+          lines.push("Please confirm the price and payment details. Thank you.");
+          return lines.join("\n");
+        }
+        function setMsg(text, kind) {
+          msgEl.textContent = text;
+          msgEl.className = "form-msg" + (kind ? " " + kind : "");
+        }
+        function validate() {
+          if (!Object.keys(cart).length) {
+            setMsg("Add at least one book to My Library first.", "err");
+            window.location.hash = "#/books";
+            return false;
+          }
+          if (!buyerDetails().name) {
+            setMsg("Please add your name so we know who this library is for.", "err");
+            document.getElementById("buyer-name").focus();
+            return false;
+          }
+          return true;
+        }
+        function copyText(text, onDone, onFail) {
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); onDone(); }
+            catch (e) { onFail(); }
+            document.body.removeChild(ta);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(onDone, fallback);
+          } else {
+            fallback();
+          }
+        }
+        document.querySelectorAll("[data-copy]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var original = btn.textContent;
+            copyText(btn.getAttribute("data-copy"), function () {
+              btn.textContent = "Copied \u2713";
+              window.setTimeout(function () { btn.textContent = original; }, 2000);
+            }, function () {
+              btn.textContent = "Copy failed \u2014 note the number";
+              window.setTimeout(function () { btn.textContent = original; }, 2600);
+            });
+          });
+        });
+        document.getElementById("send-mail").addEventListener("click", function () {
+          if (!validate()) return;
+          var subject = "Get Full Access \u2014 Gurmad Library (My Library)";
+          var url = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(orderText());
+          var a = document.createElement("a");
+          a.href = url;
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setMsg("Your email app should open with your My Library list written. If it did not, use \u201CCopy My Library details\u201D instead.", "ok");
+        });
+        document.getElementById("copy-order").addEventListener("click", function () {
+          if (!validate()) return;
+          copyText(orderText(), function () {
+            setMsg("My Library details copied. Paste them into a WhatsApp message to +252 907 327 475, or into an email to us, and send.", "ok");
+          }, function () {
+            setMsg("Copy did not work in this browser \u2014 use the email button instead.", "err");
+          });
+        });
+
+        /* ================= WhatsApp (wa.me) ordering ================= */
+        var WA_NUMBER = "252907327475";
+        function waLink(text) {
+          return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+        }
+        document.getElementById("send-wa").addEventListener("click", function (e) {
+          if (!validate()) { e.preventDefault(); return; }
+          this.href = waLink(orderText());
+          setMsg("Opening WhatsApp with your My Library list already written \u2014 just press send there.", "ok");
+        });
+        document.querySelectorAll("[data-wa-book]").forEach(function (a) {
+          var bookId = a.getAttribute("data-wa-book");
+          function refresh() {
+            var text = "Hello Gurmad Technology, I would like to get full access to this book from Gurmad Library:\n\n\u2022 " + BOOKS[bookId] + "\n  " + selectedEdition(bookId) + " \u2014 " + money(PRICES[bookId] || 0) + "\n\nPlease confirm the payment details. Thank you.";
+            a.href = waLink(text);
+          }
+          refresh();
+          document.querySelectorAll('input[name="ed-' + bookId + '"]').forEach(function (r) {
+            r.addEventListener("change", refresh);
+          });
+          a.addEventListener("click", refresh);
+        });
+        /* ================= Store cards, collection, filters, notes ================= */
+        document.querySelectorAll("[data-add-card]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var bookId = btn.getAttribute("data-add-card");
+            addItem(bookId, "Full edition (PDF + Word)");
+            var note = document.querySelector('[data-note-card="' + bookId + '"]');
+            if (note) {
+              note.textContent = "Added to My Library \u2713 \u2014 tap the cart (top) or My Library to order on WhatsApp.";
+              window.setTimeout(function () { note.textContent = ""; }, 3200);
+            }
+          });
+        });
+        var collBtn = document.getElementById("add-collection");
+        if (collBtn) {
+          collBtn.addEventListener("click", function () {
+            addItem("collection", "Complete collection");
+            window.location.hash = "#/order";
+          });
+        }
+
+        var activeCat = "all";
+        var searchQuery = "";
+        function applyFilters() {
+          var visible = 0;
+          document.querySelectorAll("[data-book-card]").forEach(function (card) {
+            var catOk = activeCat === "all" || card.getAttribute("data-cat") === activeCat;
+            var qOk = !searchQuery || (card.getAttribute("data-name") || "").indexOf(searchQuery) !== -1;
+            var show = catOk && qOk;
+            card.style.display = show ? "" : "none";
+            if (show) visible += 1;
+          });
+          var nr = document.getElementById("no-results");
+          if (nr) nr.classList.toggle("show", visible === 0);
+        }
+        document.querySelectorAll("[data-chip]").forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            document.querySelectorAll("[data-chip]").forEach(function (c) { c.classList.remove("active"); });
+            chip.classList.add("active");
+            activeCat = chip.getAttribute("data-chip");
+            applyFilters();
+          });
+        });
+        var searchInput = document.getElementById("book-search");
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            searchQuery = searchInput.value.trim().toLowerCase();
+            applyFilters();
+          });
+          searchInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              window.location.hash = "#/books";
+            }
+          });
+        }
+
+        document.querySelectorAll("[data-scrollto]").forEach(function (a) {
+          a.addEventListener("click", function () {
+            var id = a.getAttribute("data-scrollto");
+            window.setTimeout(function () {
+              var el = document.getElementById(id);
+              if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 90);
+          });
+        });
+
+        var toastEl = document.getElementById("toast");
+        var toastTimer = null;
+        function showToast(text) {
+          toastEl.textContent = text;
+          toastEl.classList.add("show");
+          if (toastTimer) window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(function () { toastEl.classList.remove("show"); }, 4200);
+        }
+        var NOTES = {
+          signin: "No account or sign-in is needed. Add books to My Library and order on WhatsApp \u2014 your books are delivered there.",
+          orders: "Orders are placed from My Library and confirmed on WhatsApp (+252 907 327 475) \u2014 there is no separate orders account.",
+          account: "There are no accounts in Gurmad Library. Your books live in My Library on this page, and delivery is by WhatsApp and email."
+        };
+        document.querySelectorAll("[data-note]").forEach(function (el) {
+          el.addEventListener("click", function () {
+            showToast(NOTES[el.getAttribute("data-note")] || NOTES.account);
+          });
+        });
+
+        renderCart();
+
+        /* Sample PDF downloads: each sample file is stored once (the canonical
+           link tagged sample-src-* above); every other Download button resolves
+           through it, so a single-file export embeds each PDF only once. */
+        document.querySelectorAll("[data-dl]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var book = btn.getAttribute("data-dl");
+            var src = document.getElementById("sample-src-" + book);
+            if (!src) return;
+            var a = document.createElement("a");
+            a.href = src.href;
+            a.download = "sample-book-" + book + ".pdf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          });
+        });
+
+        /* ================= Inside the Book readers — Selected Pages (one per book page) ================= */
+        var PREVIEWS = {
+          one:   { title: "The AI & Tech Terminology Handbook", free: 20, total: 749, dir: "assets/preview/one/" },
+          two:   { title: "Prompt Engineering",                 free: 16, total: 88,  dir: "assets/preview/two/" },
+          three: { title: "AI Mastery",                         free: 18, total: 430, dir: "assets/preview/three/" }
+        };
+        function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+        document.querySelectorAll("[data-reader]").forEach(function (root) {
+          var bookId = root.getAttribute("data-reader");
+          var P = PREVIEWS[bookId];
+          if (!P) return;
+          var page = 0; // 0..free-1 = pages; free = lock screen
+          var img = root.querySelector(".r-img");
+          var lock = root.querySelector(".lock");
+          var freeEl = root.querySelector(".r-free");
+          var progress = root.querySelector(".r-progress");
+          var count = root.querySelector(".r-count");
+          var prev = root.querySelector(".r-prev");
+          var next = root.querySelector(".r-next");
+          var lockText = root.querySelector(".r-lock-text");
+          var stage = root.querySelector(".reader-stage");
+
+          freeEl.innerHTML = "";
+          freeEl.appendChild(document.createTextNode("Selected Pages \u00B7 Bogag la soo xulay: pages 1\u2013" + P.free + " of " + P.total + " \u00B7 "));
+          var b = document.createElement("strong");
+          b.textContent = "Complimentary Reading Edition \u00B7 Nuqul akhris oo bilaash ah";
+          freeEl.appendChild(b);
+          lockText.textContent = "You have explored all " + P.free + " Selected Pages of " + P.title + " (" + P.total + " pages in the full book). Get Full Access \u2014 Hel buugga oo dhammaystiran \u2014 to continue from page " + (P.free + 1) + ": every chapter, exercise, and answer key.";
+
+          function render() {
+            var locked = page >= P.free;
+            if (locked) {
+              img.style.display = "none";
+              lock.classList.add("show");
+              count.textContent = "End of Selected Pages";
+              progress.style.width = "100%";
+            } else {
+              lock.classList.remove("show");
+              img.style.display = "block";
+              img.src = P.dir + "p-" + pad(page + 1) + ".jpg";
+              img.alt = P.title + " \u2014 Inside the Book, Selected Pages page " + (page + 1);
+              count.textContent = "Page " + (page + 1) + " of " + P.free + " \u00B7 Selected Pages";
+              progress.style.width = Math.round(((page + 1) / P.free) * 100) + "%";
+              if (page + 1 < P.free) {
+                var pre = new Image();
+                pre.src = P.dir + "p-" + pad(page + 2) + ".jpg";
+              }
+            }
+            prev.disabled = page === 0;
+            next.disabled = locked;
+            next.textContent = locked ? "Locked" : (page === P.free - 1 ? "Finish \u2192 Get Full Access" : "Next \u2192");
+          }
+          prev.addEventListener("click", function () { if (page > 0) { page -= 1; render(); } });
+          next.addEventListener("click", function () { if (page < P.free) { page += 1; render(); } });
+          var touchX = null;
+          stage.addEventListener("touchstart", function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+          stage.addEventListener("touchend", function (e) {
+            if (touchX === null) return;
+            var dx = e.changedTouches[0].clientX - touchX;
+            touchX = null;
+            if (Math.abs(dx) < 48) return;
+            if (dx < 0) next.click();
+            else prev.click();
+          }, { passive: true });
+
+          function orderThis() {
+            addItem(bookId, selectedEdition(bookId));
+            window.location.hash = "#/order";
+          }
+          root.querySelector(".r-order").addEventListener("click", orderThis);
+          root.querySelector(".r-lock-order").addEventListener("click", orderThis);
+
+          render();
+        });
+
+        document.querySelectorAll("[data-explore]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var reader = document.querySelector('[data-reader="' + btn.getAttribute("data-explore") + '"]');
+            if (reader) reader.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+
+        showView();
+      })();
+    </script>
+  </body>
+</html>
