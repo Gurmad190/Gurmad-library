@@ -799,6 +799,71 @@
         .theme-toggle { padding: 9px 11px; }
         .theme-toggle .tt-label { display: none; }
       }
+
+      /* ---------- Categories dropdown (top nav) ---------- */
+      .navdrop { position: relative; }
+      .navdrop-menu {
+        display: none; position: absolute; top: calc(100% + 4px); left: 0; z-index: 55;
+        min-width: 240px; padding: 6px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+      .navdrop:hover .navdrop-menu, .navdrop:focus-within .navdrop-menu { display: block; }
+      nav.mainnav .navdrop-menu a {
+        display: flex; color: var(--ink); border-radius: 8px; padding: 10px 12px;
+      }
+      nav.mainnav .navdrop-menu a:hover { background: var(--surface-2); color: var(--ink); }
+
+      /* ---------- Books page filter + category page links ---------- */
+      .cat-links { color: var(--ink-soft); margin: 0 0 20px; }
+      .cat-links a { font-weight: 700; text-decoration: none; white-space: nowrap; }
+      .cat-links a:hover { text-decoration: underline; }
+
+      /* ---------- Forms: select + publish page ---------- */
+      label.f select {
+        display: block; width: 100%; margin-top: 6px;
+        font: inherit; font-weight: 400;
+        padding: 11px 12px; min-height: 48px;
+        border: 1px solid var(--line); border-radius: 10px;
+        background: var(--bg); color: var(--ink);
+      }
+      .pub-done {
+        border: 1px solid var(--emerald); border-radius: 10px;
+        background: rgba(23, 207, 139, 0.1);
+        padding: 16px 18px; margin-top: 16px;
+      }
+      .pub-done h3 { font-size: 1.35rem; margin-bottom: 8px; }
+      .pub-done p { margin: 0 0 8px; }
+      .pub-done p:last-child { margin-bottom: 0; }
+      .how-list { margin: 0 0 14px; padding-left: 20px; color: var(--ink-soft); }
+      .how-list li { margin-bottom: 6px; }
+      .how-panel p { color: var(--ink-soft); margin: 0 0 12px; }
+      .how-panel p.so-p { color: var(--ink); }
+      .sub-line { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .sub-line:last-of-type { border-bottom: 0; }
+      .sub-line .t { font-weight: 600; }
+      .sub-line .e { color: var(--ink-soft); font-size: 0.9rem; display: block; }
+      .sub-status { font-weight: 700; font-size: 0.88rem; color: var(--emerald-deep); white-space: nowrap; }
+            :root[data-theme="dark"] .sub-status { color: var(--emerald); }
+
+      /* ---------- Free books + generated covers ---------- */
+      .price-free { color: var(--emerald-deep); }
+            :root[data-theme="dark"] .price-free { color: var(--emerald); }
+      .cov-fallback {
+        display: flex; align-items: center; justify-content: center;
+        width: 104px; min-height: 132px; padding: 12px 10px;
+        background: var(--navy-950); color: var(--cyan);
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.06em; text-align: center; line-height: 1.25;
+        border: 1.5px dashed rgba(34, 200, 245, 0.6); border-radius: 5px;
+      }
+      .d-cover-fallback {
+        width: min(250px, 80%); min-height: 300px;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--cyan); font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.06em; text-align: center; font-size: 1.5rem; line-height: 1.25;
+        border: 1.5px dashed rgba(34, 200, 245, 0.6); border-radius: 6px; padding: 24px 18px;
+      }
     </style>
     <script>
       /* Set the starting theme before the page paints: the mobile layout
@@ -821,8 +886,16 @@
         <nav class="mainnav" aria-label="Library pages">
           <a href="#/home" data-nav="home">Home</a>
           <a href="#/books" data-nav="books">Books</a>
-          <a href="#/home" data-scrollto="categories">Categories</a>
+          <div class="navdrop">
+            <a href="#/home" data-scrollto="categories" aria-haspopup="true">Categories</a>
+            <div class="navdrop-menu">
+              <a href="#/category/reference">Reference (Terminology)</a>
+              <a href="#/category/practical">Practical Skills</a>
+              <a href="#/category/advanced">Advanced Learning</a>
+            </div>
+          </div>
           <a href="#/coming-soon" data-nav="coming">Coming Soon</a>
+          <a href="#/publish" data-nav="publish">Publish</a>
           <a href="#/home" data-scrollto="help">Help</a>
         </nav>
         <div class="searchbox">
@@ -1170,6 +1243,17 @@
           <div class="sec-head">
             <h2>Available now</h2>
           </div>
+          <div class="chips" role="group" aria-label="Filter books by category">
+            <button class="chip active" type="button" data-bfilter="all">All Books</button>
+            <button class="chip" type="button" data-bfilter="reference">Reference</button>
+            <button class="chip" type="button" data-bfilter="practical">Practical Skills</button>
+            <button class="chip" type="button" data-bfilter="advanced">Advanced Learning</button>
+          </div>
+          <p class="cat-links">Category pages:
+            <a href="#/category/reference">Reference (Terminology) →</a> ·
+            <a href="#/category/practical">Practical Skills →</a> ·
+            <a href="#/category/advanced">Advanced Learning →</a>
+          </p>
           <div class="books">
             <article class="book book-card" data-book-card data-cat="reference" data-name="the ai and tech terminology handbook glossary reference erey-bixin">
               <div class="book-main">
@@ -1280,6 +1364,147 @@
               </div>
             </article>
           </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: CATEGORY — REFERENCE ================= -->
+    <div class="view" data-view="category-reference">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · Reference</p>
+          <h1>Reference <span>(Terminology)</span></h1>
+          <p>Reference books — the terminology handbooks and glossaries of Gurmad Library: clear definitions you look up again and again, explained in English and Somali.</p>
+          <p lang="so">Buugaagta tixraaca — erey-bixinta iyo qaamuusyada maktabadda, Af-Ingiriisi iyo Af-Soomaali.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="sec-head">
+            <h2>Books in Reference</h2>
+          </div>
+          <div class="books" data-cat-grid="reference">
+            <article class="book book-card" data-book-card data-cat="reference" data-name="the ai and tech terminology handbook glossary reference erey-bixin">
+              <div class="book-main">
+                <a class="cov" href="#/book/one"><img src="assets/cover-one.jpg" alt="Cover of The AI &amp; Tech Terminology Handbook" width="652" height="805" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-reference">Reference</span>
+                  <h3><a href="#/book/one">The AI &amp; Tech Terminology Handbook</a></h3>
+                  <p class="desc">A Practical Glossary of AI, Software, and Digital Technology — Buugga Erey-bixinta AI &amp; Teknoolojiyadda. 512 glossary terms, A–Z.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>749 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>267 pages (Visual Edition)</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$5.00</span><span class="price-was">$7.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/one">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="one">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="one">Get Full Access — $5.00</button>
+                <p class="added-note" data-note-card="one" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+          <p class="cat-links" style="margin-top:26px;">Other categories:
+            <a href="#/category/practical">Practical Skills →</a> ·
+            <a href="#/category/advanced">Advanced Learning →</a> ·
+            <a href="#/books">All Books →</a>
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: CATEGORY — PRACTICAL SKILLS ================= -->
+    <div class="view" data-view="category-practical">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · Practical Skills</p>
+          <h1>Practical <span>Skills</span></h1>
+          <p>Practical Skills books — hands-on guides with real examples, templates, and techniques you can use straight away, in English and Somali.</p>
+          <p lang="so">Buugaagta xirfadaha wax-ku-oolka ah — tusaalooyin dhab ah iyo habab aad isla markiiba adeegsan karto.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="sec-head">
+            <h2>Books in Practical Skills</h2>
+          </div>
+          <div class="books" data-cat-grid="practical">
+            <article class="book book-card" data-book-card data-cat="practical" data-name="prompt engineering prompts practical guide chatgpt gemini claude grok">
+              <div class="book-main">
+                <a class="cov" href="#/book/two"><img src="assets/cover-two.jpg" alt="Cover of Prompt Engineering — The Complete Practical Guide" width="608" height="708" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-practical">Practical Skills</span>
+                  <h3><a href="#/book/two">Prompt Engineering</a></h3>
+                  <p class="desc">The Complete Practical Guide — Hagaha Dhamaystiran ee Qorista Prompts-ka AI. 17 prompt types, 15 advanced techniques, 32 ready prompts.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>88 pages (Full Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>48 pages (Visual Edition)</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$8.00</span><span class="price-was">$10.00</span><span class="save-pill">Save $2</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/two">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="two">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="two">Get Full Access — $8.00</button>
+                <p class="added-note" data-note-card="two" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+          <p class="cat-links" style="margin-top:26px;">Other categories:
+            <a href="#/category/reference">Reference (Terminology) →</a> ·
+            <a href="#/category/advanced">Advanced Learning →</a> ·
+            <a href="#/books">All Books →</a>
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: CATEGORY — ADVANCED LEARNING ================= -->
+    <div class="view" data-view="category-advanced">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · Advanced Learning</p>
+          <h1>Advanced <span>Learning</span></h1>
+          <p>Advanced Learning books — complete learning programs that take you from the fundamentals to advanced, real-world work, in English and Somali.</p>
+          <p lang="so">Buugaagta waxbarashada heerka sare — barnaamijyo dhammaystiran oo kaa bilaaba aasaaska ilaa heer sare.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="sec-head">
+            <h2>Books in Advanced Learning</h2>
+          </div>
+          <div class="books" data-cat-grid="advanced">
+            <article class="book book-card" data-book-card data-cat="advanced" data-name="ai mastery beginner advanced machine learning agents automation">
+              <div class="book-main">
+                <a class="cov" href="#/book/three"><img src="assets/cover-three.jpg" alt="Cover of AI Mastery — From Beginner to Advanced" width="640" height="835" loading="lazy" /></a>
+                <div class="info">
+                  <span class="cat-label cat-advanced">Advanced Learning</span>
+                  <h3><a href="#/book/three">AI Mastery</a></h3>
+                  <p class="desc">From Beginner to Advanced — Laga Bilaabo Aasaaska ilaa Heer Sare (Advanced). 30 chapters in six parts, 5 capstone projects.</p>
+                  <ul class="meta-lines">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>430 pages (Complete Edition)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Projects &amp; Real Examples</li>
+                  </ul>
+                  <p class="price-row"><span class="price-now">$12.00</span><span class="price-was">$15.00</span><span class="save-pill">Save $3</span></p>
+                </div>
+              </div>
+              <div class="foot">
+                <a class="btn btn-outline" href="#/book/three">Explore Selected Pages</a>
+                <button class="btn btn-outline" type="button" data-dl="three">Download Reading Edition</button>
+                <button class="btn btn-get" type="button" data-add-card="three">Get Full Access — $12.00</button>
+                <p class="added-note" data-note-card="three" aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+          <p class="cat-links" style="margin-top:26px;">Other categories:
+            <a href="#/category/reference">Reference (Terminology) →</a> ·
+            <a href="#/category/practical">Practical Skills →</a> ·
+            <a href="#/books">All Books →</a>
+          </p>
         </section>
       </main>
     </div>
@@ -1864,6 +2089,123 @@
       </main>
     </div>
 
+    <!-- ================= PAGE: PUBLISH A BOOK ================= -->
+    <div class="view" data-view="publish">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · Publish a Book</p>
+          <h1>Publish <span>a Book</span></h1>
+          <p>Share your book with readers through Gurmad Library. Anyone may submit — every book is reviewed by Gurmad before it goes live.</p>
+          <p lang="so">Buuggaaga ku daabac Maktabadda Gurmad. Qof kasta wuu soo gudbin karaa — buug kasta Gurmad ayaa eega ka hor inta aanu soo bixin.</p>
+        </div>
+      </header>
+      <main class="wrap">
+        <section>
+          <div class="order-grid">
+            <div class="panel how-panel">
+              <h3>How publishing works · <span lang="so">Sida ay u shaqeyso</span></h3>
+              <p>Anyone may submit a book to Gurmad Library — students, teachers, writers, and professionals. Every book is reviewed by Gurmad before publishing: nothing goes live automatically, because we check the book, its description, and its price first.</p>
+              <p>Paid books are sold the same way as the current books — readers order on WhatsApp and pay by EVC Plus, eDahab, or bank transfer, and the full book is delivered to them. Free books are downloadable by anyone once they are approved.</p>
+              <ol class="how-list">
+                <li>Fill in the submission form.</li>
+                <li>Press “Submit for Review” — WhatsApp opens with your details already written; just press send there.</li>
+                <li>Gurmad reviews your book and replies to you on WhatsApp.</li>
+                <li>Once approved, your book appears in the library, in its category, with its own page.</li>
+              </ol>
+              <p class="so-p" lang="so">Qof kasta wuu soo gudbin karaa buug — arday, macallin, qoraa, ama xirfadle. Buug kasta Gurmad ayaa eega ka hor inta aan la daabicin; midna si toos ah uma soo baxo. Buugaagta lacagta leh waxaa loo iibiyaa sida buugaagta hadda: akhristuhu wuxuu ku dalbadaa WhatsApp, wuxuuna ku bixiyaa EVC Plus, eDahab, ama wareejin bangi. Buugaagta bilaashka ah qof kasta wuu soo dejisan karaa marka la ansixiyo ka dib.</p>
+            </div>
+            <div class="panel">
+              <h3>Submit your book · <span lang="so">Gudbi buuggaaga</span></h3>
+              <form id="publish-form" novalidate>
+                <label class="f">Book title
+                  <input type="text" id="pub-title" placeholder="Your book's title" />
+                </label>
+                <label class="f">Author name
+                  <input type="text" id="pub-author" autocomplete="name" placeholder="Your full name" />
+                </label>
+                <label class="f">Your WhatsApp number
+                  <input type="tel" id="pub-whatsapp" autocomplete="tel" placeholder="e.g. +252 6X XXX XXXX" />
+                </label>
+                <label class="f">Category
+                  <select id="pub-category">
+                    <option value="reference">Reference (Terminology)</option>
+                    <option value="practical">Practical Skills</option>
+                    <option value="advanced">Advanced Learning</option>
+                  </select>
+                </label>
+                <label class="f">Short description
+                  <textarea id="pub-desc" placeholder="What is the book about, and who is it for?"></textarea>
+                </label>
+                <fieldset class="editions">
+                  <legend>Price — free or paid?</legend>
+                  <label class="edition">
+                    <input type="radio" name="pub-kind" value="free" checked />
+                    <span><span class="t">Free</span><span class="d">Anyone can download it once it is approved</span></span>
+                  </label>
+                  <label class="edition">
+                    <input type="radio" name="pub-kind" value="paid" />
+                    <span><span class="t">Paid</span><span class="d">Sold by WhatsApp order, the same way as the current books</span></span>
+                  </label>
+                </fieldset>
+                <label class="f" id="pub-price-wrap" hidden>Price in USD
+                  <input type="number" id="pub-price" min="1" step="0.01" placeholder="e.g. 10" />
+                </label>
+                <label class="f">Link to the book file (Google Drive / Dropbox)
+                  <input type="url" id="pub-file" placeholder="https://drive.google.com/…" />
+                </label>
+                <label class="f">Cover image link <span style="font-weight:400; color:var(--ink-soft)">(optional)</span>
+                  <input type="url" id="pub-cover" placeholder="https://…" />
+                </label>
+                <div class="order-actions">
+                  <button class="btn btn-wa-main" type="submit">Submit for Review · <span lang="so">Gudbi si loo eego</span></button>
+                </div>
+                <p class="form-msg" id="pub-msg" aria-live="polite"></p>
+              </form>
+              <div class="pub-done" id="pub-done" hidden>
+                <h3>Submitted for review ✓</h3>
+                <p><strong>Submitted for review — Gurmad will check it before it goes live.</strong> WhatsApp should have opened with your submission written to Gurmad Technology (+252 907 327 475) — press send there so we receive it. We reply on your WhatsApp number after the review.</p>
+                <p lang="so">Waa la gudbiyay — Gurmad ayaa eegi doona ka hor inta aan buuggu soo bixin. WhatsApp ayaa furmay oo fariintaadu diyaar tahay — riix “send” si ay noo soo gaarto.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel" style="margin-top:22px;">
+            <h3>Your submissions on this device · <span lang="so">Kuwa aad gudbisay</span></h3>
+            <div id="pub-subs">
+              <p class="cart-empty">No submissions yet. When you submit a book above, it is kept here as “Pending review” until Gurmad approves it.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= PAGE: BOOK (generated from the catalog) ================= -->
+    <div class="view" data-view="book-generic">
+      <header class="pagehead">
+        <div class="wrap pagehead-in">
+          <p class="crumb"><a href="#/home">Home</a> · <a href="#/books">Books</a> · <span id="gen-crumb">Book</span></p>
+          <h1 id="gen-h1">Book</h1>
+          <p id="gen-sub"></p>
+        </div>
+      </header>
+      <main class="wrap">
+        <div class="detail">
+          <div class="d-cover" id="gen-cover"></div>
+          <div>
+            <span class="badge badge-now">Available now</span>
+            <h2 id="gen-title"></h2>
+            <p class="d-sub" id="gen-author"></p>
+            <p class="d-price" id="gen-price"></p>
+            <p class="d-desc" id="gen-desc"></p>
+            <ul class="specs" id="gen-specs"></ul>
+            <div class="d-actions actions-stack" id="gen-actions"></div>
+            <p class="added-note" id="gen-note" aria-live="polite"></p>
+            <a class="backlink" href="#/books">← Back to the Books page</a><br />
+            <a class="backlink" id="gen-catlink" href="#/books">Browse this category →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
     <nav class="bottomnav" aria-label="Library pages">
       <div class="bn-in">
         <a href="#/home" data-nav="home">
@@ -1932,18 +2274,118 @@
             Gurmad Educational Hub · Gurmad AI Connect
           </p>
         </div>
+        <div>
+          <strong>PUBLISH &amp; CATEGORIES</strong>
+          <p>
+            <a href="#/publish">Publish a Book</a><br />
+            <a href="#/category/reference">Reference (Terminology)</a><br />
+            <a href="#/category/practical">Practical Skills</a><br />
+            <a href="#/category/advanced">Advanced Learning</a>
+          </p>
+        </div>
       </div>
     </footer>
 
     <script>
       (function () {
-        var BOOKS = {
-          one: "The AI & Tech Terminology Handbook: A Practical Glossary of AI, Software, and Digital Technology",
-          two: "Prompt Engineering: The Complete Practical Guide",
-          three: "AI Mastery: From Beginner to Advanced",
-          collection: "Complete AI Learning Collection — all 3 books (Terminology Handbook + Prompt Engineering + AI Mastery), Full editions"
-        };
-        var PRICES = { one: 5, two: 8, three: 12, collection: 18 };
+        /* ================================================================
+           BOOK CATALOG — THE ONE LIST OF BOOKS.
+           To publish a newly approved book, add ONE entry here and it
+           appears automatically on Home, on the Books page, on its
+           category page, in search, in the cart / WhatsApp order flow,
+           and on its own book page at #/book/<id>.
+           Fields:
+             id         short unique id used in links (#/book/<id>)
+             title      book title as shown on cards and pages
+             fullTitle  title + subtitle, used in order messages
+             author     author name
+             category   "reference" | "practical" | "advanced"
+             free       true = free download, false = paid
+             price      price in USD (paid books)
+             was        previous price in USD (optional, shows a saving)
+             cover      cover image file (optional)
+             description  short description shown on cards and the page
+             pages      page-count text, e.g. "120 pages (Full Edition)"
+             sample     free sample / reading-edition PDF file (optional)
+             previewDir preview pages folder (the three launch books)
+             fileUrl    download link for a FREE book (its file link)
+             keywords   extra words for search
+             staticPage true only for the three launch books below, whose
+                        rich hand-built pages already exist in this file
+           ================================================================ */
+        var CATEGORIES = [
+          { id: "reference", name: "Reference", full: "Reference (Terminology)" },
+          { id: "practical", name: "Practical Skills", full: "Practical Skills" },
+          { id: "advanced", name: "Advanced Learning", full: "Advanced Learning" }
+        ];
+        var BOOK_CATALOG = [
+          {
+            id: "one",
+            title: "The AI & Tech Terminology Handbook",
+            fullTitle: "The AI & Tech Terminology Handbook: A Practical Glossary of AI, Software, and Digital Technology",
+            author: "Gurmad Technology",
+            category: "reference",
+            free: false, price: 5, was: 7,
+            cover: "assets/cover-one.jpg",
+            description: "A Practical Glossary of AI, Software, and Digital Technology",
+            pages: "749 pages (Full Edition) · 267 pages (Visual Edition)",
+            sample: "assets/sample-book-one.pdf",
+            previewDir: "assets/preview/one/",
+            keywords: "glossary reference erey-bixin",
+            staticPage: true
+          },
+          {
+            id: "two",
+            title: "Prompt Engineering",
+            fullTitle: "Prompt Engineering: The Complete Practical Guide",
+            author: "Gurmad Technology",
+            category: "practical",
+            free: false, price: 8, was: 10,
+            cover: "assets/cover-two.jpg",
+            description: "The Complete Practical Guide — writing effective prompts, with real examples and templates",
+            pages: "88 pages (Full Edition) · 48 pages (Visual Edition)",
+            sample: "assets/sample-book-two.pdf",
+            previewDir: "assets/preview/two/",
+            keywords: "prompts practical guide chatgpt gemini claude grok",
+            staticPage: true
+          },
+          {
+            id: "three",
+            title: "AI Mastery",
+            fullTitle: "AI Mastery: From Beginner to Advanced",
+            author: "Gurmad Technology",
+            category: "advanced",
+            free: false, price: 12, was: 15,
+            cover: "assets/cover-three.jpg",
+            description: "From Beginner to Advanced — the complete practical guide to artificial intelligence",
+            pages: "430 pages (Complete Edition)",
+            sample: "assets/sample-book-three.pdf",
+            previewDir: "assets/preview/three/",
+            keywords: "beginner advanced machine learning agents automation",
+            staticPage: true
+          }
+        ];
+        function catalogBook(id) {
+          for (var i = 0; i < BOOK_CATALOG.length; i++) {
+            if (BOOK_CATALOG[i].id === id) return BOOK_CATALOG[i];
+          }
+          return null;
+        }
+        function catalogCategory(id) {
+          for (var i = 0; i < CATEGORIES.length; i++) {
+            if (CATEGORIES[i].id === id) return CATEGORIES[i];
+          }
+          return null;
+        }
+        /* Cart / order lookups, derived from the catalog above. */
+        var BOOKS = {};
+        var PRICES = {};
+        BOOK_CATALOG.forEach(function (b) {
+          BOOKS[b.id] = b.fullTitle || b.title;
+          PRICES[b.id] = b.free ? 0 : (b.price || 0);
+        });
+        BOOKS.collection = "Complete AI Learning Collection — all 3 books (Terminology Handbook + Prompt Engineering + AI Mastery), Full editions";
+        PRICES.collection = 18;
         function money(n) { return "$" + n.toFixed(2); }
         var EMAIL = "gurmad@gurmadtechnology.online";
 
@@ -2002,6 +2444,10 @@
           "soon/business": "soon-business",
           "soon/build": "soon-build",
           "soon/marketing": "soon-marketing",
+          "category/reference": "category-reference",
+          "category/practical": "category-practical",
+          "category/advanced": "category-advanced",
+          "publish": "publish",
           "order": "order"
         };
         var NAVMAP = {
@@ -2014,11 +2460,24 @@
           "soon-business": "coming",
           "soon-build": "coming",
           "soon-marketing": "coming",
+          "category-reference": "books",
+          "category-practical": "books",
+          "category-advanced": "books",
+          "publish": "publish",
+          "book-generic": "books",
           "order": "order"
         };
+        var genericBookId = null;
         function currentRoute() {
           var h = window.location.hash.replace(/^#\/?/, "").split("?")[0];
-          return ROUTES.hasOwnProperty(h) ? ROUTES[h] : "home";
+          genericBookId = null;
+          if (ROUTES.hasOwnProperty(h)) return ROUTES[h];
+          var m = h.match(/^book\/(.+)$/);
+          if (m) {
+            var b = catalogBook(m[1]);
+            if (b && !b.staticPage) { genericBookId = b.id; return "book-generic"; }
+          }
+          return "home";
         }
         function showView() {
           var view = currentRoute();
@@ -2039,9 +2498,20 @@
             "soon-business": "AI for Business & Productivity (Coming Soon) — Gurmad Library",
             "soon-build": "Build with AI Tools (Coming Soon) — Gurmad Library",
             "soon-marketing": "Digital Marketing with AI (Coming Soon) — Gurmad Library",
+            "category-reference": "Reference (Terminology) — Gurmad Library",
+            "category-practical": "Practical Skills — Gurmad Library",
+            "category-advanced": "Advanced Learning — Gurmad Library",
+            "publish": "Publish a Book — Gurmad Library",
             "order": "My Library · Maktabaddayda — Gurmad Library"
           };
           document.title = titles[view] || titles.home;
+          if (view === "book-generic" && genericBookId) {
+            var gb = catalogBook(genericBookId);
+            if (gb) {
+              document.title = gb.title + " — Gurmad Library";
+              populateGenericBook(gb);
+            }
+          }
           window.scrollTo(0, 0);
         }
         window.addEventListener("hashchange", showView);
@@ -2279,6 +2749,83 @@
           });
           a.addEventListener("click", refresh);
         });
+        /* ================= Catalog-driven cards =================
+           Books added to BOOK_CATALOG (beyond the three launch books,
+           whose cards are hand-built above) get a card rendered here on
+           Home, on the Books page, and on their category page — with a
+           "Download Free" button for free books and the usual price +
+           "Get Full Access" flow for paid books. */
+        function escHtml(s) {
+          return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+          });
+        }
+        var BOOK_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18V5.5" stroke="currentColor" stroke-width="1.8"/></svg>';
+        function catalogCardHTML(b) {
+          var cat = catalogCategory(b.category);
+          var catName = cat ? cat.name : b.category;
+          var href = "#/book/" + b.id;
+          var cover = b.cover
+            ? '<a class="cov" href="' + href + '"><img src="' + escHtml(b.cover) + '" alt="Cover of ' + escHtml(b.title) + '" loading="lazy" /></a>'
+            : '<a class="cov" href="' + href + '"><span class="cov-fallback">' + escHtml(b.title) + "</span></a>";
+          var priceRow;
+          if (b.free) {
+            priceRow = '<p class="price-row"><span class="price-now price-free">Free</span><span class="save-pill">Free Download</span></p>';
+          } else {
+            priceRow = '<p class="price-row"><span class="price-now">' + money(b.price || 0) + "</span>" +
+              (b.was ? '<span class="price-was">' + money(b.was) + '</span><span class="save-pill">Save ' + money(b.was - (b.price || 0)).replace(".00", "") + "</span>" : "") + "</p>";
+          }
+          var foot = '<a class="btn btn-outline" href="' + href + '">View Book</a>';
+          if (b.sample) {
+            foot += '<a class="btn btn-outline" href="' + escHtml(b.sample) + '" download>Download Reading Edition</a>';
+          }
+          if (b.free) {
+            foot += '<a class="btn btn-get" href="' + escHtml(b.fileUrl || "#") + '" target="_blank" rel="noopener">Download Free</a>';
+          } else {
+            foot += '<button class="btn btn-get" type="button" data-add-card="' + b.id + '">Get Full Access — ' + money(b.price || 0) + "</button>";
+          }
+          foot += '<p class="added-note" data-note-card="' + b.id + '" aria-live="polite"></p>';
+          return '<article class="book book-card" data-book-card data-cat="' + escHtml(b.category) + '" data-name="' + escHtml((b.title + " " + (b.keywords || "")).toLowerCase()) + '">' +
+            '<div class="book-main">' + cover +
+            '<div class="info">' +
+            '<span class="cat-label cat-' + escHtml(b.category) + '">' + escHtml(catName) + "</span>" +
+            '<h3><a href="' + href + '">' + escHtml(b.title) + "</a></h3>" +
+            '<p class="desc">' + escHtml(b.description || "") + "</p>" +
+            '<ul class="meta-lines"><li>' + BOOK_ICON + escHtml(b.pages || "") + "</li></ul>" +
+            priceRow +
+            "</div></div>" +
+            '<div class="foot">' + foot + "</div>" +
+            "</article>";
+        }
+        function renderCatalogExtras() {
+          var extras = BOOK_CATALOG.filter(function (b) { return !b.staticPage; });
+          if (!extras.length) return;
+          var grids = [];
+          var homeGrid = document.querySelector("#categories .books");
+          if (homeGrid) grids.push(homeGrid);
+          var booksGrid = document.querySelector('[data-view="books"] section .books');
+          if (booksGrid) grids.push(booksGrid);
+          extras.forEach(function (b) {
+            var html = catalogCardHTML(b);
+            grids.forEach(function (g) { g.insertAdjacentHTML("beforeend", html); });
+            var catGrid = document.querySelector('[data-cat-grid="' + b.category + '"]');
+            if (catGrid) catGrid.insertAdjacentHTML("beforeend", html);
+          });
+        }
+        renderCatalogExtras();
+
+        /* Home category chips show live counts from the catalog. */
+        document.querySelectorAll("[data-chip]").forEach(function (chip) {
+          var c = chip.getAttribute("data-chip");
+          if (c === "all") {
+            chip.textContent = "All Books (" + BOOK_CATALOG.length + ")";
+          } else {
+            var cat = catalogCategory(c);
+            var n = BOOK_CATALOG.filter(function (b) { return b.category === c; }).length;
+            chip.textContent = (cat ? cat.name : c) + " (" + n + ")";
+          }
+        });
+
         /* ================= Store cards, collection, filters, notes ================= */
         document.querySelectorAll("[data-add-card]").forEach(function (btn) {
           btn.addEventListener("click", function () {
@@ -2465,6 +3012,257 @@
             if (reader) reader.scrollIntoView({ behavior: "smooth", block: "start" });
           });
         });
+
+        /* ================= Generated book page (catalog books) =================
+           Any catalog book without a hand-built page gets its page here:
+           free books show "Download Free"; paid books keep the price and
+           the Get Full Access / WhatsApp order flow. */
+        function populateGenericBook(b) {
+          if (!b) return;
+          var cat = catalogCategory(b.category);
+          var catName = cat ? cat.full : b.category;
+          document.getElementById("gen-crumb").textContent = b.title;
+          document.getElementById("gen-h1").textContent = b.title;
+          document.getElementById("gen-sub").textContent = "By " + (b.author || "Gurmad Technology") + " · " + catName + " · Gurmad Library";
+          var coverEl = document.getElementById("gen-cover");
+          coverEl.innerHTML = "";
+          if (b.cover) {
+            var img = document.createElement("img");
+            img.src = b.cover;
+            img.alt = "Cover of " + b.title;
+            coverEl.appendChild(img);
+          } else {
+            var fb = document.createElement("div");
+            fb.className = "d-cover-fallback";
+            fb.textContent = b.title;
+            coverEl.appendChild(fb);
+          }
+          document.getElementById("gen-title").textContent = b.title;
+          document.getElementById("gen-author").textContent = "By " + (b.author || "Gurmad Technology") + " · " + catName;
+          var priceEl = document.getElementById("gen-price");
+          priceEl.innerHTML = "";
+          if (b.free) {
+            var pf = document.createElement("span");
+            pf.className = "price-now price-free";
+            pf.textContent = "Free";
+            priceEl.appendChild(pf);
+            var kf = document.createElement("span");
+            kf.className = "kind";
+            kf.textContent = "Free book — download it now, no payment needed.";
+            priceEl.appendChild(kf);
+          } else {
+            var pn = document.createElement("span");
+            pn.className = "price-now";
+            pn.textContent = money(b.price || 0);
+            priceEl.appendChild(pn);
+            if (b.was) {
+              var pw = document.createElement("span");
+              pw.className = "price-was";
+              pw.textContent = money(b.was);
+              priceEl.appendChild(pw);
+              var ps = document.createElement("span");
+              ps.className = "save-pill";
+              ps.textContent = "Save " + money(b.was - (b.price || 0)).replace(".00", "");
+              priceEl.appendChild(ps);
+            }
+            var kp = document.createElement("span");
+            kp.className = "kind";
+            kp.textContent = "Digital Edition — delivered on WhatsApp & email after payment is confirmed";
+            priceEl.appendChild(kp);
+          }
+          document.getElementById("gen-desc").textContent = b.description || "";
+          var specs = document.getElementById("gen-specs");
+          specs.innerHTML = "";
+          [
+            [b.pages || "—", "Pages"],
+            [catName, "Category"],
+            [b.author || "Gurmad Technology", "Author"]
+          ].forEach(function (pair) {
+            var li = document.createElement("li");
+            var st = document.createElement("strong");
+            st.textContent = pair[0];
+            li.appendChild(st);
+            li.appendChild(document.createTextNode(pair[1]));
+            specs.appendChild(li);
+          });
+          var actions = document.getElementById("gen-actions");
+          actions.innerHTML = "";
+          var note = document.getElementById("gen-note");
+          note.textContent = "";
+          if (b.sample) {
+            var sa = document.createElement("a");
+            sa.className = "btn btn-sample";
+            sa.href = b.sample;
+            sa.setAttribute("download", "");
+            sa.textContent = "Download Reading Edition (PDF)";
+            actions.appendChild(sa);
+          }
+          if (b.free) {
+            var dl = document.createElement("a");
+            dl.className = "btn btn-get";
+            dl.href = b.fileUrl || "#";
+            dl.target = "_blank";
+            dl.rel = "noopener";
+            dl.textContent = "Download Free";
+            actions.appendChild(dl);
+          } else {
+            var add = document.createElement("button");
+            add.className = "btn btn-add";
+            add.type = "button";
+            add.textContent = "Get Full Access";
+            add.addEventListener("click", function () {
+              addItem(b.id, "Full edition (PDF + Word)");
+              note.textContent = "Added to My Library ✓ — open “My Library · Maktabaddayda” in the menu to get full access.";
+              window.setTimeout(function () { note.textContent = ""; }, 3200);
+            });
+            actions.appendChild(add);
+            var wa = document.createElement("a");
+            wa.className = "btn btn-wa";
+            wa.target = "_blank";
+            wa.rel = "noopener";
+            wa.textContent = "Order on WhatsApp";
+            wa.href = waLink("Hello Gurmad Technology, I would like to get full access to this book from Gurmad Library:\n\n• " + (b.fullTitle || b.title) + "\n  Full edition (PDF + Word) — " + money(b.price || 0) + "\n\nPlease confirm the payment details. Thank you.");
+            actions.appendChild(wa);
+          }
+          var catlink = document.getElementById("gen-catlink");
+          catlink.href = "#/category/" + b.category;
+          catlink.textContent = "More books in " + catName + " →";
+        }
+
+        /* ================= Books page category filter ================= */
+        document.querySelectorAll("[data-bfilter]").forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            document.querySelectorAll("[data-bfilter]").forEach(function (c) { c.classList.remove("active"); });
+            chip.classList.add("active");
+            var f = chip.getAttribute("data-bfilter");
+            document.querySelectorAll('[data-view="books"] [data-book-card]').forEach(function (card) {
+              card.style.display = (f === "all" || card.getAttribute("data-cat") === f) ? "" : "none";
+            });
+          });
+        });
+
+        /* ================= Publish a Book — submissions =================
+           A submission is saved in this browser and sent to Gurmad on
+           WhatsApp (+252 907 327 475). Nothing goes live from here:
+           Gurmad reviews every submission and approves it first. */
+        var SUBS_KEY = "gurmad-library-submissions";
+        function loadSubmissions() {
+          try {
+            var raw = window.localStorage.getItem(SUBS_KEY);
+            var parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (e) { return []; }
+        }
+        function saveSubmission(sub) {
+          try {
+            var subs = loadSubmissions();
+            subs.push(sub);
+            window.localStorage.setItem(SUBS_KEY, JSON.stringify(subs));
+          } catch (e) { /* browser storage unavailable — the WhatsApp send still carries the submission */ }
+        }
+        function renderSubmissions() {
+          var box = document.getElementById("pub-subs");
+          if (!box) return;
+          var subs = loadSubmissions();
+          if (!subs.length) {
+            box.innerHTML = '<p class="cart-empty">No submissions yet. When you submit a book above, it is kept here as “Pending review” until Gurmad approves it.</p>';
+            return;
+          }
+          box.innerHTML = "";
+          subs.forEach(function (s) {
+            var row = document.createElement("div");
+            row.className = "sub-line";
+            var left = document.createElement("div");
+            var t = document.createElement("span");
+            t.className = "t";
+            t.textContent = s.title;
+            var e = document.createElement("span");
+            e.className = "e";
+            var cat = catalogCategory(s.category);
+            e.textContent = "by " + s.author + " · " + (cat ? cat.full : s.category) + " · " + (s.free ? "Free" : "Paid — " + money(s.price || 0));
+            left.appendChild(t);
+            left.appendChild(e);
+            var st = document.createElement("span");
+            st.className = "sub-status";
+            st.textContent = "Pending review";
+            row.appendChild(left);
+            row.appendChild(st);
+            box.appendChild(row);
+          });
+        }
+        var pubForm = document.getElementById("publish-form");
+        if (pubForm) {
+          var pubMsg = document.getElementById("pub-msg");
+          var pubDone = document.getElementById("pub-done");
+          var priceWrap = document.getElementById("pub-price-wrap");
+          function pubKind() {
+            var r = pubForm.querySelector('input[name="pub-kind"]:checked');
+            return r ? r.value : "free";
+          }
+          pubForm.querySelectorAll('input[name="pub-kind"]').forEach(function (r) {
+            r.addEventListener("change", function () {
+              priceWrap.hidden = pubKind() !== "paid";
+            });
+          });
+          function pubErr(text) {
+            pubMsg.textContent = text;
+            pubMsg.className = "form-msg err";
+          }
+          pubForm.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            var sub = {
+              title: document.getElementById("pub-title").value.trim(),
+              author: document.getElementById("pub-author").value.trim(),
+              whatsapp: document.getElementById("pub-whatsapp").value.trim(),
+              category: document.getElementById("pub-category").value,
+              description: document.getElementById("pub-desc").value.trim(),
+              free: pubKind() === "free",
+              price: parseFloat(document.getElementById("pub-price").value) || 0,
+              fileLink: document.getElementById("pub-file").value.trim(),
+              coverLink: document.getElementById("pub-cover").value.trim(),
+              status: "Pending review",
+              submittedAt: new Date().toISOString()
+            };
+            if (!sub.title) { pubErr("Please add the book title."); document.getElementById("pub-title").focus(); return; }
+            if (!sub.author) { pubErr("Please add the author name."); document.getElementById("pub-author").focus(); return; }
+            if (!sub.whatsapp) { pubErr("Please add your WhatsApp number so Gurmad can reply to you."); document.getElementById("pub-whatsapp").focus(); return; }
+            if (!sub.description) { pubErr("Please add a short description of the book."); document.getElementById("pub-desc").focus(); return; }
+            if (!sub.free && !(sub.price > 0)) { pubErr("Please add the price in USD, or choose Free."); document.getElementById("pub-price").focus(); return; }
+            if (!sub.fileLink) { pubErr("Please add the link to the book file (Google Drive / Dropbox)."); document.getElementById("pub-file").focus(); return; }
+            pubMsg.textContent = "";
+            pubMsg.className = "form-msg";
+            saveSubmission(sub);
+            renderSubmissions();
+            var cat = catalogCategory(sub.category);
+            var lines = [
+              "New book submission for Gurmad Library — please review:",
+              "",
+              "Title: " + sub.title,
+              "Author: " + sub.author,
+              "Author WhatsApp: " + sub.whatsapp,
+              "Category: " + (cat ? cat.full : sub.category),
+              "Price: " + (sub.free ? "Free" : "Paid — " + money(sub.price)),
+              "Description: " + sub.description,
+              "Book file link: " + sub.fileLink,
+              "Cover image link: " + (sub.coverLink || "—"),
+              "",
+              "Submitted from the Publish a Book page. It goes live only after Gurmad approves it."
+            ];
+            var a = document.createElement("a");
+            a.href = waLink(lines.join("\n"));
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            pubForm.reset();
+            priceWrap.hidden = true;
+            pubDone.hidden = false;
+            pubDone.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+          renderSubmissions();
+        }
 
         showView();
       })();
